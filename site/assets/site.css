@@ -345,47 +345,43 @@ html:not(.js) .mode {
   height: 12px;
   flex: none;
 }
-.stage-body {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 28px;
-  align-items: end;
-}
-.stage-meta {
-  display: grid;
-  gap: 10px;
-  padding-bottom: 18px;
-}
-.bar {
-  display: block;
-  height: 10px;
-  border-radius: var(--cr-radius-full);
-  background: var(--cr-surface-sunken);
-}
-.bar.title {
-  height: 18px;
-  width: 88%;
-  background: var(--cr-border);
-}
-.bar.w70 { width: 70%; }
-.bar.w55 { width: 55%; }
-.bar.w80 { width: 80%; }
-.bar.w40 { width: 40%; }
-.bar.gap { margin-top: 8px; }
-
-/* Shelf rule under the box: the family motif. */
-.plinth {
+/* The real screenshot of a title page, standing on the shelf rule. */
+.shot {
   position: relative;
-  padding: 18px 18px 0;
-  perspective: 900px;
 }
-.plinth::after {
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--cr-radius-md);
+  box-shadow: 0 0 0 1px var(--cr-border);
+}
+.shot::after {
   content: '';
   display: block;
   height: 8px;
-  margin-top: 16px;
+  margin-top: 14px;
   border-radius: var(--cr-radius-full);
   background: var(--cr-manila);
+}
+
+/* Light and dark captures: show the one that matches the page. */
+.shot-dark {
+  display: none !important;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .shot-light {
+    display: none !important;
+  }
+  :root:not([data-theme='light']) .shot-dark {
+    display: block !important;
+  }
+}
+:root[data-theme='dark'] .shot-light {
+  display: none !important;
+}
+:root[data-theme='dark'] .shot-dark {
+  display: block !important;
 }
 
 /* ── The CSS box (no game art: an abstract cover) ─────────────────── */
@@ -492,8 +488,14 @@ html:not(.js) .mode {
   border-radius: var(--cr-radius-md);
   cursor: zoom-in;
 }
-.strip .screen {
+.strip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 400 / 236;
+  object-fit: cover;
   border-radius: var(--cr-radius-md);
+  box-shadow: 0 0 0 1px var(--cr-border);
 }
 .stage-note {
   margin-top: 14px;
@@ -961,7 +963,12 @@ kbd {
 .lightbox::backdrop {
   background: var(--cr-scrim);
 }
-.lightbox .screen {
+.lightbox-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1440 / 848;
+  background: #000;
   border-radius: var(--cr-radius-xl) var(--cr-radius-xl) 0 0;
 }
 .lightbox-bar {
@@ -993,22 +1000,21 @@ kbd {
   outline-color: var(--cr-code-accent);
 }
 
-/* ── Motion: one load moment, the box swinging onto its shelf ────────
+/* ── Motion: one load moment, the title page rising onto its shelf ──
    html.anim is set by theme.js only without prefers-reduced-motion. */
 
-@keyframes box-in {
+@keyframes shot-in {
   from {
-    transform: translateY(-36px) rotateX(-8deg) rotateY(160deg);
+    opacity: 0;
+    transform: translateY(18px);
   }
   to {
-    transform: rotateX(var(--rx)) rotateY(var(--ry));
+    opacity: 1;
+    transform: none;
   }
 }
-html.anim .hero .box {
-  animation: box-in 1100ms var(--cr-ease-ink) 150ms both;
-}
-html.anim .hero .box.touched {
-  animation: none;
+html.anim .hero .shot {
+  animation: shot-in 700ms var(--cr-ease-ink) 120ms both;
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1019,7 +1025,7 @@ html.anim .hero .box.touched {
   .faq summary::after {
     transition: none;
   }
-  html .hero .box {
+  html .hero .shot {
     animation: none;
   }
 }
@@ -1028,22 +1034,6 @@ html.anim .hero .box.touched {
 @media (max-width: 520px) {
   .stage {
     padding: 16px;
-  }
-  .stage-body {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-  .plinth {
-    justify-self: center;
-    width: 100%;
-    display: grid;
-    justify-items: center;
-  }
-  .plinth::after {
-    width: 100%;
-  }
-  .stage-meta {
-    padding-bottom: 0;
   }
   .lang {
     padding: 5px 8px;

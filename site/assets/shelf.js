@@ -1,7 +1,8 @@
 /* The two interactive bits of the page, both optional (the page reads the
    same without them):
-   1. The hero box turns when dragged, or with the arrow keys once focused.
-   2. The thumbnails open a lightbox that works like the extension's:
+   1. A CSS box turns when dragged, or with the arrow keys once focused
+      (only when the page has one in the hero).
+   2. The screenshot thumbnails open a lightbox that works like the extension's:
       Left/Right to move, Escape to close. */
 (function () {
   "use strict";
@@ -43,14 +44,17 @@
   }
 
   function lightbox(dialog, thumbs) {
-    var screen = dialog.querySelector(".screen");
+    var shot = dialog.querySelector(".lightbox-shot");
     var caption = dialog.querySelector("[data-caption]");
     var count = dialog.querySelector("[data-count]");
     var at = 0, opener = null;
     function show(i) {
       at = (i + thumbs.length) % thumbs.length;
-      screen.className = "screen " + thumbs[at].getAttribute("data-screen");
-      caption.textContent = thumbs[at].getAttribute("aria-label");
+      var t = thumbs[at];
+      var light = document.documentElement.getAttribute("data-theme") === "light";
+      shot.src = (light && t.getAttribute("data-full-light")) || t.getAttribute("data-full");
+      shot.alt = t.getAttribute("aria-label");
+      caption.textContent = t.getAttribute("aria-label");
       count.textContent = (at + 1) + " / " + thumbs.length;
     }
     thumbs.forEach(function (t, i) {
@@ -75,7 +79,7 @@
     var box = document.querySelector(".hero .box");
     if (box) turnable(box);
     var dialog = document.querySelector(".lightbox");
-    var thumbs = Array.prototype.slice.call(document.querySelectorAll("[data-screen]"));
+    var thumbs = Array.prototype.slice.call(document.querySelectorAll(".strip [data-full]"));
     if (dialog && dialog.showModal && thumbs.length) lightbox(dialog, thumbs);
     else thumbs.forEach(function (t) { t.disabled = true; });
   });
