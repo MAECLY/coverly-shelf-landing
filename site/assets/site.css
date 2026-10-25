@@ -992,6 +992,147 @@ kbd {
   background: var(--cr-manila);
 }
 
+/* Decorative mocks (aria-hidden): a list whose rows get their covers, and
+   the cache setting. Fixed sizes, so nothing moves the layout. */
+.lists-side .notes {
+  margin-top: 32px;
+}
+.rowmock {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  background: var(--cr-surface);
+  border: 1px solid var(--cr-border);
+  border-radius: var(--cr-radius-xl);
+  overflow: clip;
+}
+.rowmock .row {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 6px 12px;
+  align-content: center;
+  padding: 5px 6px;
+  border-radius: var(--cr-radius-md);
+  background: var(--cr-surface-sunken);
+}
+.rowmock .slot {
+  position: relative;
+  grid-row: span 2;
+  width: 30px;
+  height: 34px;
+  border-radius: 3px;
+  background:
+    radial-gradient(circle at 72% 30%, #e6c171 0 17%, transparent 17.5%),
+    linear-gradient(180deg, #2f8a9b, #0e5e6f 70%);
+}
+.rowmock .row:nth-child(2) .slot {
+  background: linear-gradient(transparent 62%, #4e7d3a 62%), linear-gradient(#8fd0e6, #cdebf2);
+}
+.rowmock .row:nth-child(3) .slot {
+  background: radial-gradient(circle at 50% 40%, #faa453 0 22%, transparent 23%), linear-gradient(#b3261e, #6e1712);
+}
+.rowmock .row:nth-child(4) .slot {
+  background: linear-gradient(135deg, #3c6e47, #2a5233);
+}
+.rowmock .row:nth-child(5) .slot {
+  background: radial-gradient(ellipse at 50% 120%, #5db6c4 0 40%, transparent 41%), linear-gradient(#0d1b2a, #1f3b4d);
+}
+/* No cover anywhere: the plain initials cover. */
+.rowmock .slot-ns {
+  display: grid;
+  place-items: center;
+  font: 800 11px/1 var(--cr-font-display);
+  color: var(--cr-bg);
+  background: var(--cr-text-secondary);
+}
+.rowmock .row:nth-child(6) .slot {
+  background: var(--cr-text-secondary);
+}
+/* The empty dashed slot, hidden at rest (motion.css fades it out). */
+.rowmock .slot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1.5px dashed var(--cr-border-strong);
+  background: var(--cr-surface);
+  opacity: 0;
+}
+.rowmock .bar {
+  display: block;
+  height: 7px;
+  width: 72%;
+  border-radius: var(--cr-radius-full);
+  background: var(--cr-border-strong);
+}
+.rowmock .bar + .bar {
+  width: 38%;
+  background: var(--cr-border);
+}
+.seg {
+  margin-top: 28px;
+  max-width: 420px;
+}
+.seg-opts {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  padding: 3px;
+  border: 1px solid var(--cr-border);
+  border-radius: var(--cr-radius-full);
+  background: var(--cr-surface-sunken);
+  font-size: 13px;
+  color: var(--cr-text-secondary);
+}
+.seg-opts span {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding: 6px 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.seg-opts .on {
+  color: var(--cr-text);
+  font-weight: 700;
+}
+.seg-opts .thumb {
+  position: absolute;
+  z-index: 0;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / 5);
+  padding: 0;
+  border-radius: var(--cr-radius-full);
+  background: var(--cr-surface-raised);
+  box-shadow: 0 0 0 1px var(--cr-border);
+  transform: translateX(200%);
+}
+.seg .meter {
+  display: block;
+  height: 8px;
+  margin-top: 14px;
+  border-radius: var(--cr-radius-full);
+  background: var(--cr-surface-sunken);
+  overflow: hidden;
+}
+.seg .meter i {
+  display: block;
+  width: 60%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--cr-manila);
+  transform-origin: 0 50%;
+}
+@media (max-width: 420px) {
+  .seg-opts {
+    font-size: 12px;
+  }
+}
+
 /* Settings: the text and the settings page, side by side. */
 .split {
   display: grid;

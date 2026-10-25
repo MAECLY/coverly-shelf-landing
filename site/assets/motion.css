@@ -213,6 +213,90 @@ html.vt-ink::view-transition-new(root) {
   animation: ink-spread 480ms var(--cr-ease-ink) both;
 }
 
+@keyframes slot-pop {
+  0% {
+    transform: scale(0.86);
+  }
+  60% {
+    transform: scale(1.06);
+  }
+}
+@keyframes slot-empty {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes seg-slide {
+  from {
+    transform: translateX(0);
+  }
+}
+
+.rowmock .row:nth-child(2) {
+  --r: 1;
+}
+.rowmock .row:nth-child(3) {
+  --r: 2;
+}
+.rowmock .row:nth-child(4) {
+  --r: 3;
+}
+.rowmock .row:nth-child(5) {
+  --r: 4;
+}
+.rowmock .row:nth-child(6) {
+  --r: 5;
+}
+.rowmock .bar {
+  transform-origin: 0 50%;
+}
+
+/* The list mock: each row gets its cover as that row crosses into the
+   screen, like the extension's lazy rows. Decoration only, scrubbed. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .rowmock {
+      view-timeline: --rows block;
+    }
+    .rowmock .slot,
+    .rowmock .slot::after,
+    .rowmock .bar {
+      animation-timeline: --rows;
+      animation-range: entry calc(var(--r, 0) * 15% + 20%) entry calc(var(--r, 0) * 15% + 40%);
+      animation-fill-mode: both;
+      animation-timing-function: var(--cr-ease-ink);
+    }
+    .rowmock .slot {
+      animation-name: slot-pop;
+    }
+    .rowmock .slot::after {
+      animation-name: slot-empty;
+    }
+    .rowmock .bar {
+      animation-name: draw-x;
+    }
+  }
+}
+@supports not (animation-timeline: view()) {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    html.motion .rowmock.is-in .slot,
+    html.motion .rowmock.is-in .slot::after,
+    html.motion .rowmock.is-in .bar {
+      animation: slot-pop 420ms var(--cr-ease-ink) backwards;
+      animation-delay: calc(var(--r, 0) * 110ms + 200ms);
+    }
+    html.motion .rowmock.is-in .slot::after {
+      animation-name: slot-empty;
+    }
+    html.motion .rowmock.is-in .bar {
+      animation-name: draw-x;
+    }
+  }
+}
+
 /* Reading progress: a manila bar under the top bar, scrubbed by the scroll.
    Decoration only, so it needs no class gate. */
 @supports (animation-timeline: scroll()) {
@@ -290,11 +374,11 @@ html.vt-ink::view-transition-new(root) {
   }
 
   /* ── Scroll: each block settles in once ── */
-  html.motion :is(.section h2, .section .intro, .aside-card, .credits-grid > *, .faq, .feature, .shot-card, .lists-grid .stage, .rowmock, .seg):not(.is-in),
+  html.motion :is(.section h2, .section .intro, .aside-card, .credits-grid > *, .faq, .feature, .shot-card, .lists-grid .stage, .seg):not(.is-in),
   html.motion :is(.notes, .promises):not(.is-in) > li {
     opacity: 0;
   }
-  html.motion :is(.section h2, .section .intro, .aside-card, .credits-grid > *, .faq, .feature, .shot-card, .lists-grid .stage, .rowmock, .seg).is-in,
+  html.motion :is(.section h2, .section .intro, .aside-card, .credits-grid > *, .faq, .feature, .shot-card, .lists-grid .stage, .seg).is-in,
   html.motion :is(.notes, .promises).is-in > li {
     animation: rise var(--cr-duration-slower) var(--cr-ease-ink) backwards;
     animation-delay: calc(var(--n, 0) * var(--step, 70ms));
@@ -343,6 +427,14 @@ html.vt-ink::view-transition-new(root) {
   html.motion .duo .shot-card.is-in img {
     animation: zoom-in var(--lp-beat-l) var(--cr-ease-ink) backwards;
     animation-delay: calc(var(--n, 0) * 140ms);
+  }
+  /* Cache retention: the choice springs from "this session" to the
+     default 7 days, then the storage meter fills. */
+  html.motion .seg.is-in .thumb {
+    animation: seg-slide 480ms var(--cr-ease-spring) 250ms backwards;
+  }
+  html.motion .seg.is-in .meter i {
+    animation: draw-x 640ms var(--cr-ease-ink) 600ms backwards;
   }
   html.motion .credits-grid .family.is-in img {
     transform-origin: 50% 100%;
