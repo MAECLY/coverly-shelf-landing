@@ -16,6 +16,9 @@ Gates, in the spirit of the Coverly ROMs landing's checks:
            than JSON-LD, no third-party scripts, styles or trackers, images
            sized and described
   budget   page, CSS, JS and image sizes
+  metrics  each page has one empty, hidden data-metric slot for downloads
+           and one for stars (apply_metrics.py fills them at build time,
+           only with a known number above zero)
 
 Exit status 1 when any gate fails; every failure is printed.
 """
@@ -67,6 +70,9 @@ BUDGET = {
     "png": 120_000,
     "svg": 8_000,
 }
+
+METRICS = ("downloads", "stars")
+SLOT = re.compile(r'<(\w+)\b([^>]*)\sdata-metric="([^"]*)"([^>]*)>(.*?)</\1>', re.S)
 
 failures: list[str] = []
 
@@ -261,6 +267,17 @@ def check_budget(site: Path) -> None:
             fail("budget", f"{f.relative_to(site)}: looks like a tracker")
 
 
+def check_metrics(site: Path) -> None:
+    for rel in PAGES.values():
+        found = SLOT.findall((site / rel).read_text(encoding="utf-8"))
+        names = sorted(m[2] for m in found)
+        if names != sorted(METRICS):
+            fail("metrics", f"{rel}: data-metric slots {names}, expected one each of {sorted(METRICS)}")
+        for _, _, name, after, inner in found:
+            if not re.search(r"\shidden$", after) or inner:
+                fail("metrics", f"{rel}: data-metric={name} must be empty and end in ' hidden>'")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--site", default=str(ROOT / "site"))
@@ -272,11 +289,12 @@ def main() -> int:
     check_parity(pages)
     check_head(site, pages)
     check_budget(site)
+    check_metrics(site)
     if failures:
         print("\n".join(failures))
         print(f"\n{len(failures)} check(s) failed.")
         return 1
-    print("site: files, links, parity, head and budget checks passed")
+    print("site: files, links, parity, head, budget and metrics checks passed")
     return 0
 
 
