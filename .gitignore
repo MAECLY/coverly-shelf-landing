@@ -1,0 +1,17 @@
+# Build output (make site, scripts/site/vercel_build.sh)
+target/
+
+# Vercel CLI link and local environment
+.vercel
+.env*
+
+# Tools
+node_modules/
+
+# Editor / OS
+.DS_Store
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.swp
