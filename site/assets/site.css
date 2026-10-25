@@ -391,9 +391,9 @@ html:not(.js) .mode {
 .box {
   --w: 168px;
   --h: 188px;
-  --d: 26px;
+  --d: 34px;
   --rx: -8deg;
-  --ry: -28deg;
+  --ry: 32deg;
   position: relative;
   width: var(--w);
   height: var(--h);
@@ -615,7 +615,7 @@ html:not(.js) .mode {
   --w: 104px;
   --h: 116px;
   --d: 18px;
-  --ry: -34deg;
+  --ry: 32deg;
   cursor: default;
 }
 .pic-box .cover-title {
@@ -624,7 +624,7 @@ html:not(.js) .mode {
 .pic-box .face.front .cover-band {
   height: 14px;
 }
-.pic-gallery {
+.feature .pic-gallery {
   grid-template-columns: repeat(3, 1fr);
   display: grid;
   align-items: end;
@@ -688,8 +688,8 @@ kbd {
 /* Safety: the dark band. */
 .safety {
   background: var(--cr-code-bg);
+  border-block: 1px solid rgb(255 255 255 / 8%);
   color: var(--cr-code-fg);
-  border-top: 0;
 }
 .safety .intro {
   color: var(--cr-code-muted);
@@ -796,6 +796,9 @@ kbd {
 }
 .steps li:last-child {
   border-bottom: 1px solid var(--cr-border);
+}
+.steps li > * {
+  grid-column: 2;
 }
 .steps li::before {
   content: counter(step);
@@ -993,7 +996,7 @@ kbd {
 
 @keyframes box-in {
   from {
-    transform: translateY(-36px) rotateX(-8deg) rotateY(-120deg);
+    transform: translateY(-36px) rotateX(-8deg) rotateY(160deg);
   }
   to {
     transform: rotateX(var(--rx)) rotateY(var(--ry));

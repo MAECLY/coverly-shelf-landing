@@ -9,7 +9,7 @@
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
 
   function turnable(box) {
-    var ry = -28, rx = -8, start = null;
+    var ry = 32, rx = -8, start = null;
     function set() {
       box.style.setProperty("--ry", ry + "deg");
       box.style.setProperty("--rx", rx + "deg");
@@ -33,7 +33,7 @@
     box.addEventListener("pointercancel", end);
     box.addEventListener("keydown", function (e) {
       var step = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, 8], ArrowDown: [0, -8] }[e.key];
-      if (e.key === "Home") { ry = -28; rx = -8; }
+      if (e.key === "Home") { ry = 32; rx = -8; }
       else if (step) { ry += step[0]; rx = clamp(rx + step[1], -30, 20); }
       else return;
       e.preventDefault();
