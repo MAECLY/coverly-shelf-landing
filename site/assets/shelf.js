@@ -1,7 +1,8 @@
 /* The two interactive bits of the page, both optional (the page reads the
    same without them):
-   1. A CSS box turns when dragged, or with the arrow keys once focused
-      (the hero's box, or the one in "what it adds").
+   1. The CSS box in "what it adds" turns when dragged (mouse or finger).
+      It is decorative and inside aria-hidden, so it never takes focus and
+      the arrow-key handler stays idle there; it only helps a focusable box.
    2. The screenshot thumbnails open a lightbox that works like the extension's:
       Left/Right to move, Escape to close. */
 (function () {
