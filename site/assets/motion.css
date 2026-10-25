@@ -26,6 +26,11 @@ html .no-anim *::after {
 }
 
 /* Stagger: --n is a child's place in its row, --step the beat between. */
+/* The first child resets --n so it never inherits one from an outer stagger
+   (.pic-gallery sits inside the second .feature). */
+:is(.strip, .features, .duo, .pic-gallery, .credits-grid, .notes, .promises, .steps) > :first-child {
+  --n: 0;
+}
 :is(.strip, .features, .duo, .pic-gallery, .credits-grid, .notes, .promises, .steps) > :nth-child(2) {
   --n: 1;
 }
