@@ -1,0 +1,42 @@
+/* Coverly Shelf landing: motion. Same contract as the Coverly ROMs landing.
+   The HTML is the finished frame; everything here only plays towards it.
+   Only transform, opacity, clip-path, colours, box-shadow and SVG stroke
+   offsets move, so nothing shifts the layout.
+   Gates: theme.js sets html.anim in <head> (no reduced motion, no
+   Save-Data), which runs the hero on first paint; motion.js adds
+   html.motion once its setup worked, and .is-in as each block scrolls in.
+   Without JS neither class exists and the page renders finished. */
+
+:root {
+  --lp-ease-swing: linear(0, 0.23 4%, 0.68 10%, 1.06 17%, 1.16 21%, 1.12 26%, 1 33%, 0.95 40%, 0.97 50%, 1.01 62%, 1);
+  --lp-beat: 320ms;
+  --lp-beat-l: 560ms;
+  --lp-scene: 2400ms;
+}
+
+/* Shown without playing: on screen at load, a late load, or halt(). */
+html .no-anim,
+html .no-anim *,
+html .no-anim::before,
+html .no-anim::after,
+html .no-anim *::before,
+html .no-anim *::after {
+  animation-duration: 1ms !important;
+  animation-delay: 0ms !important;
+}
+
+/* Reduced motion: nothing moves, everything is in place. Keep last. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
