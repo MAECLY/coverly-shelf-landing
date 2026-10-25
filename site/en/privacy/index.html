@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>Privacy policy | Coverly Shelf</title>
+<meta name="description" content="Coverly Shelf collects no personal data: no analytics, no account, no server. What it stores in your browser and which requests it makes.">
+<meta name="robots" content="index,follow">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://coverly-shelf.maecly.com/en/privacy/">
+<link rel="alternate" hreflang="es" href="https://coverly-shelf.maecly.com/privacy/">
+<link rel="alternate" hreflang="en" href="https://coverly-shelf.maecly.com/en/privacy/">
+<link rel="alternate" hreflang="x-default" href="https://coverly-shelf.maecly.com/privacy/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js"></script>
+</head>
+<body>
+<main class="wrap policy">
+<p class="policy-back"><a href="/en/">← Coverly Shelf</a> · <a href="/privacy/" hreflang="es" lang="es">Español</a></p>
+<h1>Privacy policy</h1>
+<p class="policy-date">Last updated: 25 October 2026</p>
+<p>Coverly Shelf is a browser extension that adds box art and screenshots to 3DS title and listing pages on hShop (hshop.erista.me). This policy covers the extension and this website.</p>
+
+<h2>The short version</h2>
+<p>Coverly Shelf does not collect, sell or share any personal data. It has no analytics, no telemetry, no account and no server of its own. Nothing you do is sent to us.</p>
+
+<h2>What the extension stores, and where</h2>
+<ul>
+<li><strong>An artwork cache</strong>, in your browser's extension storage on your device: for each game code, which cover and screenshot addresses worked (or that none did). It is kept for the time you choose in the settings (this session, 1 day, 7 days, 30 days or until you clear it), and <strong>Clear cache</strong> on the settings page deletes it at once.</li>
+<li><strong>Your settings</strong> (how long to keep artwork), in the browser's synced extension storage, so the choice follows your browser profile if you use browser sync.</li>
+<li>A few internal timestamps, so expired entries are deleted once a day and hShop is not asked again too soon when it is busy.</li>
+</ul>
+<p>None of this identifies you, and none of it leaves your browser except through your browser's own sync, if you turned it on. Removing the extension deletes all of it.</p>
+
+<h2>What the extension reads</h2>
+<p>On hShop title, listing and search pages only, it reads the game's title, product code and title ID from the page to find matching artwork. It does not read anything else, does not record which pages you visit and runs on no other site.</p>
+
+<h2>Which requests it makes</h2>
+<ul>
+<li>Image requests to <strong>art.gametdb.com</strong> and <strong>thumbnails.libretro.com</strong>, the two artwork sources. The address of each image contains the game's product code or name, which is public catalogue information.</li>
+<li>For a “Top content” row on hShop that shows no product code, one request for that game's hShop page, to read its code.</li>
+</ul>
+<p>As with any image on the web, these servers see a normal request from your browser (including your IP address) under their own privacy policies. Coverly Shelf adds no identifiers, cookies or tracking to these requests.</p>
+
+<h2>This website</h2>
+<p>coverly-shelf.maecly.com uses no cookies, analytics or third-party scripts. It is hosted on Vercel, which keeps standard server logs to operate the service.</p>
+
+<h2>Changes and contact</h2>
+<p>If this policy changes, the new version will be published on this page with a new date. The extension's code is open source, so you can check all of the above: <a href="https://github.com/MAECLY/coverly-shelf">github.com/MAECLY/coverly-shelf</a>. Questions: <a href="https://github.com/MAECLY/coverly-shelf/issues">open an issue</a>.</p>
+</main>
+</body>
+</html>
