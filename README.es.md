@@ -30,14 +30,21 @@ make help                  # todos los objetivos
 `make check` comprueba que los tokens están al día y cumplen el contraste, y
 ejecuta `scripts/site/check_site.py` (archivos necesarios, enlaces y anclas,
 paridad español/inglés, cabeceras y CSP, nada de código de terceros ni
-rastreadores, y límites de tamaño).
+rastreadores, límites de tamaño y huecos de métricas vacíos y ocultos), y después
+`scripts/site/metrics.test.mjs`.
 
 ## Cómo se publica
 
 Integración de Vercel con Git: cada push a `main` publica en producción y las
 pull requests tienen vista previa. `vercel.json` ejecuta
 `scripts/site/vercel_build.sh`, que pasa las comprobaciones y copia `site/` a
-`target/site`, la carpeta que sirve Vercel. El dominio
+`target/site`, la carpeta que sirve Vercel. Después lee el alcance público en
+la API de GitHub (`fetch_metrics.py`: las descargas de todos los archivos de
+todas las versiones y las estrellas de `MAECLY/coverly-shelf`) y lo escribe en
+la portada y junto al enlace al código del pie (`apply_metrics.py`, «4
+descargas» / «4 downloads»), solo si el número se conoce y es mayor que cero;
+un error de la API o un 0 no muestran nada y nunca rompen la build. La página
+sigue sin hablar con ningún otro servidor. El dominio
 `coverly-shelf.maecly.com` es un CNAME sin proxy en la zona `maecly.com` de
 Cloudflare que apunta a Vercel.
 

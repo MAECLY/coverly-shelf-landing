@@ -315,6 +315,21 @@ html:not(.js) .mode {
   color: var(--cr-text-secondary);
   max-width: 34em;
 }
+/* Public reach (apply_metrics.py): filled at build time, only when known. */
+[data-metric][hidden] {
+  display: none;
+}
+.fineprint.reach {
+  margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+}
+.metric-stars {
+  margin-left: 0.4em;
+  color: var(--cr-text-secondary);
+}
+.metric-stars::before {
+  content: '·\00a0';
+}
 
 /* The stage: a stand-in for a game's title page, before and after. */
 .stage {

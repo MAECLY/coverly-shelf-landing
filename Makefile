@@ -24,9 +24,10 @@ build: ## Build target/site exactly as Vercel does.
 	bash scripts/site/vercel_build.sh
 
 .PHONY: check
-check: ## Every gate: tokens and contrast, files, links, ES/EN parity, head/CSP, budgets.
+check: ## Every gate: tokens and contrast, files, links, ES/EN parity, head/CSP, budgets, metrics, metrics tests.
 	node scripts/brand/build_tokens.mjs --check
 	python3 -I scripts/site/check_site.py
+	node --test scripts/site/*.test.mjs
 
 .PHONY: icons
 icons: ## Rasterise the icons from design/icon (needs Chrome or Chromium).
