@@ -25,6 +25,248 @@ html .no-anim *::after {
   animation-delay: 0ms !important;
 }
 
+/* Stagger: --n is a child's place in its row, --step the beat between. */
+:is(.strip, .features, .duo, .pic-gallery, .credits-grid, .notes, .promises, .steps) > :nth-child(2) {
+  --n: 1;
+}
+:is(.strip, .features, .duo, .pic-gallery, .credits-grid, .notes, .promises, .steps) > :nth-child(3) {
+  --n: 2;
+}
+:is(.strip, .features, .duo, .pic-gallery, .credits-grid, .notes, .promises, .steps) > :nth-child(4) {
+  --n: 3;
+}
+:is(.strip, .features, .duo, .pic-gallery, .credits-grid, .notes, .promises, .steps) > :nth-child(5) {
+  --n: 4;
+}
+.notes,
+.features,
+.pic-gallery {
+  --step: 90ms;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes lift-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes shot-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+@keyframes url-type {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+/* The page under the overlay develops from the top: the overlay slides down
+   while its clip shrinks by the same amount, so its manila top edge is the
+   scan line and nothing spills onto the shelf below. */
+@keyframes develop {
+  from {
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    transform: translateY(100%);
+    clip-path: inset(0 0 100% 0);
+  }
+}
+@keyframes draw-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes draw-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes cta-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--cr-manila) 0%, transparent);
+  }
+  40% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--cr-manila) 40%, transparent);
+  }
+}
+@keyframes seat {
+  from {
+    transform: rotate(12deg) translateY(-6px);
+  }
+}
+@keyframes chip-in {
+  from {
+    clip-path: inset(0 100% 0 0 round 4px);
+  }
+}
+
+/* Reading progress: a manila bar under the top bar, scrubbed by the scroll.
+   Decoration only, so it needs no class gate. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .topbar::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background: var(--cr-manila);
+      transform-origin: 0 50%;
+      animation: draw-x linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+/* Shelf lines draw from the left when their block comes in. */
+.shot::after,
+.feature .pic::after {
+  transform-origin: 0 50%;
+}
+.notes li::before {
+  transform-origin: 50% 0;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* ── Load: the hero, CSS only so it starts on first paint ── */
+  html.anim .topbar .brand img {
+    animation: seat 900ms var(--lp-ease-swing) 100ms backwards;
+  }
+  html.anim .topbar .wordmark b {
+    animation: chip-in 400ms var(--cr-ease-enter) 250ms backwards;
+  }
+  html.anim .hero .stage-url {
+    animation: url-type 420ms steps(24, end) 80ms backwards;
+  }
+  html.anim .hero .shot {
+    animation: shot-in 520ms var(--cr-ease-ink) 120ms backwards;
+  }
+  html.anim .hero .shot::after {
+    animation: draw-x var(--cr-duration-slower) var(--cr-ease-enter) 300ms backwards;
+  }
+  /* The overlay ends fully clipped, so the end frame is the plain page. */
+  html.anim .hero .shot::before,
+  html.motion .lists-grid .stage .shot::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 22px;
+    z-index: 1;
+    border-radius: var(--cr-radius-md);
+    background: linear-gradient(var(--cr-manila) 0 2px, var(--cr-surface) 2px);
+    pointer-events: none;
+    transform: translateY(100%);
+    clip-path: inset(0 0 100% 0);
+  }
+  html.anim .hero .shot::before {
+    animation: develop 640ms var(--cr-ease-ink) 420ms backwards;
+  }
+  html.motion .lists-grid .stage:not(.is-in) .shot::before {
+    transform: none;
+    clip-path: none;
+  }
+  html.motion .lists-grid .stage.is-in .shot::before {
+    animation: develop 640ms var(--cr-ease-ink) 200ms backwards;
+  }
+  html.anim .hero .strip button {
+    animation: lift-in var(--lp-beat) var(--cr-ease-ink) backwards;
+    animation-delay: calc(760ms + var(--n, 0) * 70ms);
+  }
+  html.anim .hero .btn-primary {
+    animation: cta-glow 640ms var(--cr-ease-standard) 1300ms;
+  }
+
+  /* ── Scroll: each block settles in once ── */
+  html.motion :is(.section h2, .section .intro, .aside-card, .credits-grid > *, .faq, .feature, .shot-card, .lists-grid .stage, .rowmock, .seg):not(.is-in),
+  html.motion :is(.notes, .promises):not(.is-in) > li {
+    opacity: 0;
+  }
+  html.motion :is(.section h2, .section .intro, .aside-card, .credits-grid > *, .faq, .feature, .shot-card, .lists-grid .stage, .rowmock, .seg).is-in,
+  html.motion :is(.notes, .promises).is-in > li {
+    animation: rise var(--cr-duration-slower) var(--cr-ease-ink) backwards;
+    animation-delay: calc(var(--n, 0) * var(--step, 70ms));
+  }
+  html.motion .notes.is-in > li::before {
+    animation: draw-y var(--cr-duration-slower) var(--cr-ease-enter) backwards;
+    animation-delay: calc(var(--n, 0) * var(--step, 70ms) + 120ms);
+  }
+  html.motion :is(.feature, .shot-card, .lists-grid .stage).is-in :is(.shot, .pic)::after {
+    animation: draw-x var(--cr-duration-slower) var(--cr-ease-enter) 200ms backwards;
+  }
+  html.motion .credits-grid .family.is-in img {
+    transform-origin: 50% 100%;
+    animation: seat 900ms var(--lp-ease-swing) 300ms backwards;
+  }
+}
+
+/* Feedback that answers a hand. */
+@media (prefers-reduced-motion: no-preference) {
+  .btn {
+    transition:
+      background-color var(--cr-duration-fast) var(--cr-ease-standard),
+      border-color var(--cr-duration-fast) var(--cr-ease-standard),
+      transform var(--cr-duration-base) var(--cr-ease-ink),
+      box-shadow var(--cr-duration-base) var(--cr-ease-ink);
+  }
+  .strip img {
+    transition:
+      transform var(--cr-duration-base) var(--cr-ease-ink),
+      box-shadow var(--cr-duration-base) var(--cr-ease-ink);
+  }
+  .mode label,
+  .topnav a,
+  .footer a,
+  .faq summary {
+    transition: color var(--cr-duration-fast) var(--cr-ease-standard), background-color var(--cr-duration-fast) var(--cr-ease-standard);
+  }
+}
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--cr-shadow-raised);
+  }
+  .strip button:hover img {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 2px var(--cr-manila), var(--cr-shadow-raised);
+  }
+  .faq summary:hover {
+    color: var(--cr-primary);
+  }
+}
+.btn:active {
+  transform: none;
+  box-shadow: none;
+}
+
+/* FAQ: answers open to their height. */
+@supports (interpolate-size: allow-keywords) {
+  @media (prefers-reduced-motion: no-preference) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+    .faq details::details-content {
+      block-size: 0;
+      overflow: clip;
+      transition:
+        block-size var(--cr-duration-slow) var(--cr-ease-ink),
+        content-visibility var(--cr-duration-slow) allow-discrete;
+    }
+    .faq details[open]::details-content {
+      block-size: auto;
+    }
+  }
+}
+
 /* Reduced motion: nothing moves, everything is in place. Keep last. */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -610,7 +610,18 @@ html:not(.js) .mode {
   place-items: end center;
   padding-bottom: 14px;
   margin-bottom: 22px;
-  border-bottom: 6px solid var(--cr-manila);
+  position: relative;
+  border-bottom: 6px solid transparent;
+}
+/* The shelf, drawn as its own bar in the border's place so it can draw in. */
+.feature .pic::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 6px;
+  background: var(--cr-manila);
 }
 .pic-box {
   perspective: 600px;
@@ -968,8 +979,18 @@ kbd {
   gap: 28px;
 }
 .notes li {
+  position: relative;
   padding-left: 18px;
-  border-left: 4px solid var(--cr-manila);
+  border-left: 4px solid transparent;
+}
+.notes li::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--cr-manila);
 }
 
 /* Settings: the text and the settings page, side by side. */
@@ -1081,22 +1102,7 @@ kbd {
   outline-color: var(--cr-code-accent);
 }
 
-/* ── Motion: one load moment, the title page rising onto its shelf ──
-   html.anim is set by theme.js only without prefers-reduced-motion. */
-
-@keyframes shot-in {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-html.anim .hero .shot {
-  animation: shot-in 700ms var(--cr-ease-ink) 120ms both;
-}
+/* Motion lives in motion.css. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1105,9 +1111,6 @@ html.anim .hero .shot {
   .btn,
   .faq summary::after {
     transition: none;
-  }
-  html .hero .shot {
-    animation: none;
   }
 }
 
