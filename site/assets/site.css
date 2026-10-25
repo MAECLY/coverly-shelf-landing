@@ -1144,3 +1144,31 @@ html.anim .hero .shot {
   margin: 0;
   color: var(--cr-text-secondary);
 }
+
+/* Privacy policy */
+.policy {
+  max-width: 760px;
+  padding-block: 48px 72px;
+}
+.policy h1 {
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1.05;
+  font-stretch: 82%;
+  margin-block: 12px 4px;
+}
+.policy h2 {
+  font-size: 22px;
+  margin-block: 36px 8px;
+}
+.policy p,
+.policy li {
+  max-width: 70ch;
+}
+.policy li + li {
+  margin-top: 8px;
+}
+.policy-back,
+.policy-date {
+  color: var(--cr-text-secondary);
+  font-size: 15px;
+}

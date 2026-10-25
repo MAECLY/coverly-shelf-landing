@@ -38,9 +38,11 @@ CSP = (
     "base-uri 'self'; form-action 'none'"
 )
 PAGES = {"es": "index.html", "en": "en/index.html"}
+# Standalone pages: same CSP, link, inline-style and budget rules as the landing.
+EXTRA = ["404.html", "privacy/index.html", "en/privacy/index.html"]
 CANONICAL = {"es": f"https://{HOST}/", "en": f"https://{HOST}/en/"}
 REQUIRED = [
-    "index.html", "en/index.html", "404.html", "robots.txt", "sitemap.xml",
+    "index.html", "en/index.html", "404.html", "privacy/index.html", "en/privacy/index.html", "robots.txt", "sitemap.xml",
     "llms.txt", "site.webmanifest", "en/site.webmanifest", "favicon.ico",
     "assets/tokens.css", "assets/site.css", "assets/theme.js", "assets/shelf.js",
     "assets/favicon.svg", "assets/mark.svg", "assets/mark-dark.svg",
@@ -149,7 +151,7 @@ def resolve(site: Path, page_rel: str, ref: str) -> Path | None:
 
 
 def check_links(site: Path, pages: dict[str, Page]) -> None:
-    for rel in [*PAGES.values(), "404.html"]:
+    for rel in [*PAGES.values(), *EXTRA]:
         page = pages.get(rel) or parse(site / rel)
         for tag, a in page.tags:
             for attr in ("href", "src"):
@@ -209,7 +211,7 @@ def check_head(site: Path, pages: dict[str, Page]) -> None:
             fail("head", f"{rel}: canonical must be {CANONICAL[lang]}")
         if not page.find("meta", property="og:image"):
             fail("head", f"{rel}: og:image missing")
-    for rel in [*PAGES.values(), "404.html"]:
+    for rel in [*PAGES.values(), *EXTRA]:
         page = pages.get(rel) or parse(site / rel)
         text = (site / rel).read_text(encoding="utf-8")
         csp = page.find("meta", **{"http-equiv": "Content-Security-Policy"})
@@ -244,7 +246,7 @@ def check_head(site: Path, pages: dict[str, Page]) -> None:
 
 
 def check_budget(site: Path) -> None:
-    for rel in [*PAGES.values(), "404.html"]:
+    for rel in [*PAGES.values(), *EXTRA]:
         size = (site / rel).stat().st_size
         if size > BUDGET["page"]:
             fail("budget", f"{rel}: {size} B > {BUDGET['page']} B")
