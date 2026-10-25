@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-<title>Coverly Shelf: portadas y capturas para las fichas de 3DS | MAECLY</title>
-<meta name="description" content="Coverly Shelf es una extensión gratuita y de código abierto que añade la portada en caja 3D y una galería de capturas a las fichas de juegos de 3DS en hShop. Solo cosmética: no toca las descargas, no rastrea y no pide cuenta.">
+<title>Coverly Shelf: portadas y capturas para las fichas y listas de 3DS | MAECLY</title>
+<meta name="description" content="Coverly Shelf es una extensión gratuita y de código abierto que añade la portada en caja 3D y una galería de capturas a las fichas de juegos de 3DS en hShop, y una miniatura a cada fila de sus listas. Solo cosmética: no toca las descargas, no rastrea y no pide cuenta.">
 <meta name="author" content="Miguel Esparza, MAECLY">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="color-scheme" content="light dark">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:title" content="Coverly Shelf: cada juego en la estantería, con su portada.">
-<meta property="og:description" content="Portada en caja 3D y galería de capturas para las fichas de 3DS en hShop. Solo cosmética, sin rastreo y sin cuenta.">
+<meta property="og:description" content="Portada en caja 3D y galería de capturas para las fichas de 3DS en hShop, y miniaturas en sus listas. Solo cosmética, sin rastreo y sin cuenta.">
 <meta property="og:url" content="https://coverly-shelf.maecly.com/">
 <meta property="og:image" content="https://coverly-shelf.maecly.com/assets/og.png">
 <meta property="og:image:type" content="image/png">
@@ -39,7 +39,7 @@
 <meta property="og:image:alt" content="Coverly Shelf: el icono, una portada apoyada en una caja sobre una balda, con «Cada juego en la estantería, con su portada.»">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Coverly Shelf: cada juego en la estantería, con su portada.">
-<meta name="twitter:description" content="Portada en caja 3D y galería de capturas para las fichas de 3DS en hShop. Gratis y AGPL-3.0.">
+<meta name="twitter:description" content="Portada en caja 3D, galería de capturas y miniaturas en las listas de 3DS en hShop. Gratis y AGPL-3.0.">
 <meta name="twitter:image" content="https://coverly-shelf.maecly.com/assets/og.png">
 <meta name="twitter:image:alt" content="Coverly Shelf: el icono, una portada apoyada en una caja sobre una balda, con «Cada juego en la estantería, con su portada.»">
 <script type="application/ld+json">
@@ -48,7 +48,7 @@
 "@graph": [
 {"@type":"WebSite","@id":"https://coverly-shelf.maecly.com/#website","url":"https://coverly-shelf.maecly.com/","name":"Coverly Shelf","inLanguage":["es","en"],"publisher":{"@id":"https://www.maecly.com/#org"}},
 {"@type":"Organization","@id":"https://www.maecly.com/#org","name":"MAECLY","url":"https://maecly.com/"},
-{"@type":"SoftwareApplication","@id":"https://coverly-shelf.maecly.com/#software","name":"Coverly Shelf","description":"Extensión de navegador gratuita (AGPL-3.0) que añade la portada en una caja 3D y una galería de capturas a las fichas de juegos de 3DS en hShop. Solo cosmética: no toca las descargas, no rastrea y no pide cuenta. Imágenes de GameTDB y Libretro.","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Edge, Brave","inLanguage":["es","en"],"license":"https://www.gnu.org/licenses/agpl-3.0.html","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Miguel Esparza"},"publisher":{"@id":"https://www.maecly.com/#org"},"image":"https://coverly-shelf.maecly.com/assets/icon-512.png","downloadUrl":"https://github.com/MAECLY/coverly-shelf/releases/latest","url":"https://coverly-shelf.maecly.com/"}
+{"@type":"SoftwareApplication","@id":"https://coverly-shelf.maecly.com/#software","name":"Coverly Shelf","description":"Extensión de navegador gratuita (AGPL-3.0) que añade la portada en una caja 3D (ampliable a tamaño completo) y una galería de capturas a las fichas de juegos de 3DS en hShop, y una miniatura a cada fila de sus listas (juegos, actualizaciones, DLC, Consola Virtual, DSiWare, vídeos, extras y búsqueda) y del contenido relacionado. Ajustes para elegir cuánto tiempo guarda la caché. Solo cosmética: no toca las descargas, no rastrea y no pide cuenta. Imágenes de GameTDB y Libretro.","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Edge, Brave","inLanguage":["es","en"],"license":"https://www.gnu.org/licenses/agpl-3.0.html","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Miguel Esparza"},"publisher":{"@id":"https://www.maecly.com/#org"},"image":"https://coverly-shelf.maecly.com/assets/icon-512.png","downloadUrl":"https://github.com/MAECLY/coverly-shelf/releases/latest","url":"https://coverly-shelf.maecly.com/"}
 ]
 }
 </script>
@@ -83,7 +83,7 @@
 <div class="wrap hero-grid">
 <div>
 <h1 id="titulo">Cada juego en la estantería, con su portada.</h1>
-<p class="lead">Coverly Shelf es una extensión para el navegador que pone la portada en una caja 3D y una galería de capturas en cada ficha de juego de 3DS en hShop. Solo cambia cómo se ve la página: lo demás sigue igual.</p>
+<p class="lead">Coverly Shelf es una extensión para el navegador que pone la portada en una caja 3D y una galería de capturas en cada ficha de juego de 3DS en hShop, y una miniatura en cada fila de sus listas. Solo cambia cómo se ve la página: lo demás sigue igual.</p>
 <div class="actions">
 <a class="btn btn-primary" href="https://github.com/MAECLY/coverly-shelf/releases/latest"><svg class="art" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 3v9m0 0-4-4m4 4 4-4M4 15h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Descargar la extensión</a>
 <a class="btn btn-ghost" href="#instalar">Cómo instalarla</a>
@@ -195,8 +195,8 @@
 <div class="safety-grid">
 <ul class="promises">
 <li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 5 6v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><h3>Nunca toca las descargas</h3><p>Solo añade imágenes. No cambia enlaces, botones ni nada de lo que bajas.</p></li>
-<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Si algo falla, la página queda igual</h3><p>Sin portada o sin conexión con las fuentes, no añade nada y la ficha se ve como siempre.</p></li>
-<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 11V8a4 4 0 0 1 8 0v3M6 11h12v9H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><h3>Los permisos justos</h3><p>Guardar en el propio navegador qué imágenes encontró, para no volver a pedirlas, y leer imágenes de dos sitios. Nada más.</p></li>
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Si algo falla, la página queda igual</h3><p>Si la página cambia o no hay conexión con las fuentes, quita lo que añadió y la ficha se ve como siempre. Un juego sin portada lleva una carátula lisa, nunca una imagen rota.</p></li>
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 11V8a4 4 0 0 1 8 0v3M6 11h12v9H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><h3>Los permisos justos</h3><p>Guardar en el propio navegador qué imágenes encontró, para no volver a pedirlas, y leer imágenes de dos sitios. Nada más: el botón de la barra que abre los ajustes no necesita permisos.</p></li>
 <li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6zM4 4l16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><h3>Sin rastreo y sin cuenta</h3><p>No hay analítica, ni registro, ni servidor propio. Lo que visitas no sale de tu navegador.</p></li>
 </ul>
 <figure class="manifest">
@@ -222,7 +222,7 @@
 <li><h3>Descomprímelo en una carpeta que vayas a conservar</h3><p>El navegador carga la extensión desde esa carpeta: si la borras o la mueves, deja de funcionar.</p></li>
 <li><h3>Activa el modo de desarrollador</h3><p>Abre <code>chrome://extensions</code> (en Edge, <code>edge://extensions</code>; en Brave, <code>brave://extensions</code>) y activa el interruptor <i>Modo de desarrollador</i>.</p></li>
 <li><h3>Carga la carpeta</h3><p>Pulsa <i>Cargar descomprimida</i> y elige la carpeta, o arrástrala directamente a la página de extensiones.</p></li>
-<li><h3>Abre la ficha de un juego en hShop</h3><p>La portada y las capturas aparecen solas, sin nada que configurar.</p></li>
+<li><h3>Abre un juego o una lista en hShop</h3><p>Las portadas, las capturas y las miniaturas aparecen solas, sin nada que configurar.</p></li>
 </ol>
 <aside class="aside-card" aria-labelledby="actualizar-t">
 <h3 id="actualizar-t">Para actualizar</h3>
@@ -238,10 +238,12 @@
 <h2 id="preguntas-t">Preguntas</h2>
 <div class="faq">
 <details><summary>¿Por qué no está en la Chrome Web Store?</summary><div><p>Todavía no se ha enviado. Hasta entonces se instala a mano desde GitHub, con el mismo código que puedes leer en el repositorio. Cuando esté publicada, lo verás en esta página.</p></div></details>
-<details><summary>¿En qué webs funciona?</summary><div><p>En las fichas de títulos de hShop (<code>hshop.erista.me/t/…</code>). En cualquier otra web no hace nada. Coverly Shelf es un proyecto independiente, sin relación con hShop ni con Nintendo.</p></div></details>
+<details><summary>¿En qué webs funciona?</summary><div><p>En hShop: las fichas de títulos (<code>hshop.erista.me/t/…</code>), las listas de cada categoría (<code>/c/…</code>) y los resultados de búsqueda. En cualquier otra web no hace nada. Coverly Shelf es un proyecto independiente, sin relación con hShop ni con Nintendo.</p></div></details>
 <details><summary>¿Cambia algo de las descargas?</summary><div><p>No. La extensión solo añade imágenes junto al texto de la ficha. No lee ni modifica enlaces, botones o archivos.</p></div></details>
-<details><summary>¿Envía datos a algún sitio?</summary><div><p>No. Solo pide las imágenes a art.gametdb.com y thumbnails.libretro.com, y recuerda en el almacenamiento del navegador qué encontró para cada juego. No hay analítica ni cuenta.</p></div></details>
-<details><summary>¿Y si un juego no tiene portada?</summary><div><p>Prueba otras regiones y fuentes; si no encuentra nada, no añade nada y la ficha se queda como estaba.</p></div></details>
+<details><summary>¿Envía datos a algún sitio?</summary><div><p>No. Pide las imágenes a art.gametdb.com y thumbnails.libretro.com y recuerda en el almacenamiento del navegador qué encontró para cada juego. Para las filas de «Top content» que no muestran el código del producto, lee además la ficha de ese juego en la propia hShop. No hay analítica ni cuenta.</p></div></details>
+<details><summary>¿Y si un juego no tiene portada?</summary><div><p>Busca primero la de la región del juego, después las de las otras regiones en inglés y luego la de Libretro. Si no encuentra ninguna, pone una carátula lisa con las iniciales del juego, nunca una imagen rota.</p></div></details>
+<details><summary>¿Cuánto tiempo guarda lo que encuentra?</summary><div><p>Siete días por defecto. En sus ajustes (pulsa su botón en la barra del navegador) puedes elegir solo esta sesión, 1 día, 7 días, 30 días o hasta que lo borres, ver cuánto ocupa y vaciarlo con <i>Borrar caché</i>.</p></div></details>
+<details><summary>¿Carga mucho los servidores de imágenes?</summary><div><p>Lo menos posible. Comprueba cada imagen con una petición pequeña (HEAD) antes de descargarla, así que descarta las que no existen sin bajarlas; hace como mucho 4 peticiones de imágenes a la vez, y cada fila de una lista pide la suya solo cuando se acerca a la pantalla. Lo que ya encontró no lo vuelve a pedir.</p></div></details>
 <details><summary>¿Hay versión para Firefox?</summary><div><p>Está prevista. Cuando haya una versión probada, aparecerá en las versiones de GitHub y en esta página.</p></div></details>
 <details><summary>¿Es gratis?</summary><div><p>Sí. No cuesta nada, no pide cuenta y su código es AGPL-3.0.</p></div></details>
 </div>
@@ -253,7 +255,7 @@
 <h2 id="creditos-t">De dónde salen las imágenes</h2>
 <div class="credits-grid">
 <div><h3>GameTDB</h3><p>Las portadas vienen de <a href="https://www.gametdb.com/">GameTDB</a>, una base de datos de juegos que mantiene su comunidad. Las imágenes son de sus dueños.</p></div>
-<div><h3>Libretro</h3><p>Las capturas y pantallas de título vienen de <a href="https://thumbnails.libretro.com/">libretro-thumbnails</a>, el archivo de miniaturas del proyecto Libretro.</p></div>
+<div><h3>Libretro</h3><p>Las capturas y pantallas de título, y las portadas que GameTDB no tiene, vienen de <a href="https://thumbnails.libretro.com/">libretro-thumbnails</a>, el archivo de miniaturas del proyecto Libretro.</p></div>
 <div class="family"><img src="assets/coverly-roms.png" width="48" height="48" alt=""><div><h3>De la familia de Coverly ROMs</h3><p><a href="https://coverly-roms.maecly.com/">Coverly ROMs</a> hace lo mismo con las ROMs de tu tarjeta SD: encuentra las portadas que faltan y las añade.</p></div></div>
 </div>
 </div>
@@ -281,7 +283,7 @@
 <a href="https://github.com/MAECLY/coverly-shelf-landing/blob/main/THIRD-PARTY-NOTICES.md">Avisos de terceros</a>
 <a href="https://www.gnu.org/licenses/agpl-3.0.html">Licencia AGPL-3.0</a>
 </nav>
-<p class="legal">Coverly Shelf es un proyecto independiente, sin relación con hShop, GameTDB, Libretro ni Nintendo. Las portadas y capturas que muestra la extensión son de sus dueños y se cargan desde sus fuentes; esta página no incluye ninguna.</p>
+<p class="legal">Coverly Shelf es un proyecto independiente, sin relación con hShop, GameTDB, Libretro ni Nintendo. Las portadas y capturas que muestra la extensión son de sus dueños y se cargan desde sus fuentes. Las capturas de esta página las muestran con su crédito.</p>
 </div>
 </footer>
 </body>
