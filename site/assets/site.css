@@ -1053,3 +1053,21 @@ html.anim .hero .box.touched {
     font-size: 17px;
   }
 }
+
+/* 404 */
+.notfound {
+  min-height: 80vh;
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  max-width: 720px;
+}
+.notfound h1 {
+  font-size: clamp(36px, 6vw, 60px);
+  line-height: 1;
+  font-stretch: 82%;
+}
+.notfound p {
+  margin: 0;
+  color: var(--cr-text-secondary);
+}
