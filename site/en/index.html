@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>Coverly Shelf: box art and screenshots for 3DS title pages | MAECLY</title>
+<meta name="description" content="Coverly Shelf is a free, open-source browser extension that adds box art in a 3D case and a screenshot gallery to 3DS title pages on hShop. Purely cosmetic: it never touches downloads, has no tracking and needs no account.">
+<meta name="author" content="Miguel Esparza, MAECLY">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f2f3ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121514" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://coverly-shelf.maecly.com/en/">
+<link rel="alternate" hreflang="es" href="https://coverly-shelf.maecly.com/">
+<link rel="alternate" hreflang="en" href="https://coverly-shelf.maecly.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://coverly-shelf.maecly.com/">
+<link rel="manifest" href="site.webmanifest">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/atkinson-hyperlegible-next-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/theme.js"></script>
+<script src="../assets/shelf.js" defer></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Coverly Shelf">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:title" content="Coverly Shelf: every game on the shelf gets its cover.">
+<meta property="og:description" content="Box art in a 3D case and a screenshot gallery for 3DS title pages on hShop. Purely cosmetic, no tracking, no account.">
+<meta property="og:url" content="https://coverly-shelf.maecly.com/en/">
+<meta property="og:image" content="https://coverly-shelf.maecly.com/assets/og-en.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Coverly Shelf: the icon, a cover leaning on a box on a shelf, with “Every game on the shelf gets its cover.”">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Coverly Shelf: every game on the shelf gets its cover.">
+<meta name="twitter:description" content="Box art in a 3D case and a screenshot gallery for 3DS title pages on hShop. Free and AGPL-3.0.">
+<meta name="twitter:image" content="https://coverly-shelf.maecly.com/assets/og-en.png">
+<meta name="twitter:image:alt" content="Coverly Shelf: the icon, a cover leaning on a box on a shelf, with “Every game on the shelf gets its cover.”">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@graph": [
+{"@type":"WebSite","@id":"https://coverly-shelf.maecly.com/#website","url":"https://coverly-shelf.maecly.com/","name":"Coverly Shelf","inLanguage":["es","en"],"publisher":{"@id":"https://www.maecly.com/#org"}},
+{"@type":"Organization","@id":"https://www.maecly.com/#org","name":"MAECLY","url":"https://maecly.com/"},
+{"@type":"SoftwareApplication","@id":"https://coverly-shelf.maecly.com/#software","name":"Coverly Shelf","description":"Free (AGPL-3.0) browser extension that adds box art in a 3D case and a screenshot gallery to 3DS title pages on hShop. Purely cosmetic: it never touches downloads, has no tracking and needs no account. Images from GameTDB and Libretro.","applicationCategory":"BrowserApplication","operatingSystem":"Chrome, Edge, Brave","inLanguage":["es","en"],"license":"https://www.gnu.org/licenses/agpl-3.0.html","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Miguel Esparza"},"publisher":{"@id":"https://www.maecly.com/#org"},"image":"https://coverly-shelf.maecly.com/assets/icon-512.png","downloadUrl":"https://github.com/MAECLY/coverly-shelf/releases/latest","url":"https://coverly-shelf.maecly.com/en/"}
+]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+<div class="wrap topbar-inner">
+<a class="brand" href="./"><img src="../assets/favicon.svg" width="30" height="30" alt=""><span class="wordmark">Coverly <b>Shelf</b></span></a>
+<nav class="topnav" aria-label="Sections">
+<a href="#features">What it does</a>
+<a href="#safety">Safety</a>
+<a href="#install">Install</a>
+<a href="#faq">FAQ</a>
+</nav>
+<fieldset class="mode">
+<legend>Colour mode</legend>
+<label title="Match the system"><input type="radio" name="mode" value="system" aria-label="Match the system" checked><svg class="art" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2Zm0 1.5v9a4.5 4.5 0 0 1 0-9Z" fill="currentColor"/></svg></label>
+<label title="Light"><input type="radio" name="mode" value="light" aria-label="Light"><svg class="art" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="3" fill="currentColor"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></label>
+<label title="Dark"><input type="radio" name="mode" value="dark" aria-label="Dark"><svg class="art" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7Z" fill="currentColor"/></svg></label>
+</fieldset>
+<a class="lang" href="../" hreflang="es" lang="es">ES<span class="sr-only"> (Español)</span></a>
+</div>
+</header>
+
+<main id="content">
+
+<section class="hero" aria-labelledby="title">
+<div class="wrap hero-grid">
+<div>
+<h1 id="title">Every game on the shelf gets its cover.</h1>
+<p class="lead">Coverly Shelf is a browser extension that puts the box art in a 3D case and a screenshot gallery on every 3DS title page on hShop. It only changes how the page looks: everything else stays the same.</p>
+<div class="actions">
+<a class="btn btn-primary" href="https://github.com/MAECLY/coverly-shelf/releases/latest"><svg class="art" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 3v9m0 0-4-4m4 4 4-4M4 15h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download the extension</a>
+<a class="btn btn-ghost" href="#install">How to install it</a>
+</div>
+<p class="fineprint">Free and open source (AGPL-3.0). For Chrome, Edge and Brave; a Firefox version will follow.</p>
+</div>
+
+<figure class="stage">
+<p class="stage-url"><svg class="art" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 5V3.8a2.5 2.5 0 0 1 5 0V5M2.5 5h7v5.5h-7z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>hshop.erista.me/t/…</p>
+<!-- SHOTS SLOT: when real screenshots of the extension exist, replace this
+     .stage-body (and the .strip below) with a <picture> from
+     assets/shots/ (see assets/shots/README.md). Until then the box and the
+     screens are pure CSS, with no third-party game art. -->
+<div class="stage-body">
+<div class="plinth">
+<div class="box" tabindex="0" role="img" aria-label="Example 3D box: drag it or use the arrow keys to turn it">
+<span class="face back"></span><span class="face spine"></span><span class="face edge"></span><span class="face lid"></span><span class="face base"></span>
+<span class="face front"><span class="cover-band"></span><span class="cover-title" aria-hidden="true">Your game here</span></span>
+</div>
+</div>
+<div class="stage-meta" aria-hidden="true">
+<span class="bar title"></span>
+<span class="bar w55"></span>
+<span class="bar w70 gap"></span>
+<span class="bar w80"></span>
+<span class="bar w40"></span>
+<span class="bar w70"></span>
+</div>
+</div>
+<div class="strip">
+<button type="button" data-screen="s1" aria-label="Example screenshot 1: a platform level"><span class="screen s1"></span></button>
+<button type="button" data-screen="s2" aria-label="Example screenshot 2: a top-down map"><span class="screen s2"></span></button>
+<button type="button" data-screen="s3" aria-label="Example screenshot 3: a title screen"><span class="screen s3"></span></button>
+</div>
+<figcaption class="stage-note">An example title page with what Coverly Shelf adds. The box and the screenshots are drawn in CSS, with no art from any game.</figcaption>
+</figure>
+</div>
+</section>
+
+<section class="section" id="features" aria-labelledby="features-t">
+<div class="wrap">
+<h2 id="features-t">What it adds to every title page</h2>
+<p class="intro">hShop title pages list the name, the product code and a description, but no pictures. Coverly Shelf uses that code to find the game’s cover and screenshots and places them next to the text.</p>
+<div class="features">
+<article class="feature">
+<div class="pic pic-box" aria-hidden="true">
+<div class="box"><span class="face back"></span><span class="face spine"></span><span class="face edge"></span><span class="face lid"></span><span class="face base"></span><span class="face front"><span class="cover-band"></span></span></div>
+</div>
+<h3>The cover, in its box</h3>
+<p>The cover art appears mounted on a 3D box, next to the game’s name. It works for digital-only releases too.</p>
+</article>
+<article class="feature">
+<div class="pic pic-gallery" aria-hidden="true">
+<span class="screen s1"></span><span class="screen s2"></span><span class="screen s3"></span>
+</div>
+<h3>Full-size screenshots</h3>
+<p>A gallery of screenshots and the title screen. They open full size and you can move through them with the keyboard.</p>
+<p class="keys"><kbd>←</kbd><kbd>→</kbd><kbd>Esc</kbd></p>
+</article>
+<article class="feature">
+<div class="pic" aria-hidden="true">
+<span class="pic-modes"><span class="light"><span class="mini"></span></span><span class="dark"><span class="mini"></span></span></span>
+</div>
+<h3>At home in light and dark</h3>
+<p>It follows the page’s colours and type, in light mode and dark mode, so it looks like part of it.</p>
+</article>
+</div>
+</div>
+</section>
+
+<section class="section safety" id="safety" aria-labelledby="safety-t">
+<div class="wrap">
+<h2 id="safety-t">It only changes how it looks</h2>
+<p class="intro">The extension leaves everything the page does alone. Here is what it can and cannot do.</p>
+<div class="safety-grid">
+<ul class="promises">
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 5 6v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><h3>It never touches downloads</h3><p>It only adds pictures. It does not change links, buttons or anything you download.</p></li>
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>If something fails, the page is untouched</h3><p>No cover found, or the image sources are unreachable: it adds nothing and the page looks as it always did.</p></li>
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 11V8a4 4 0 0 1 8 0v3M6 11h12v9H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><h3>Only the permissions it needs</h3><p>Remembering in your browser which images it found, so it does not ask again, and reading images from two sites. Nothing else.</p></li>
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6zM4 4l16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><h3>No tracking, no account</h3><p>No analytics, no sign-up, no server of its own. What you browse stays in your browser.</p></li>
+</ul>
+<figure class="manifest">
+<figcaption>The permissions, as the manifest declares them</figcaption>
+<pre><code><span class="c">// manifest.json (excerpt)</span>
+<span class="k">"permissions"</span>: [<span class="s">"storage"</span>],
+<span class="k">"host_permissions"</span>: [
+  <span class="s">"https://art.gametdb.com/*"</span>,
+  <span class="s">"https://thumbnails.libretro.com/*"</span>
+]</code></pre>
+</figure>
+</div>
+</div>
+</section>
+
+<section class="section" id="install" aria-labelledby="install-t">
+<div class="wrap">
+<h2 id="install-t">Installing takes a minute</h2>
+<p class="intro">Until it is on the Chrome Web Store, you install it by hand from the GitHub releases.</p>
+<div class="install-grid">
+<ol class="steps">
+<li><h3>Download the latest zip</h3><p>From the project’s releases page on GitHub.</p><div class="actions"><a class="btn btn-primary" href="https://github.com/MAECLY/coverly-shelf/releases/latest">Open the latest release</a></div></li>
+<li><h3>Unzip it into a folder you will keep</h3><p>The browser loads the extension from that folder: if you delete or move it, the extension stops working.</p></li>
+<li><h3>Turn on Developer mode</h3><p>Open <code>chrome://extensions</code> (<code>edge://extensions</code> in Edge, <code>brave://extensions</code> in Brave) and switch on <i>Developer mode</i>.</p></li>
+<li><h3>Load the folder</h3><p>Click <i>Load unpacked</i> and pick the folder, or drag the folder straight onto the extensions page.</p></li>
+<li><h3>Open a title page on hShop</h3><p>The cover and screenshots appear on their own, with nothing to set up.</p></li>
+</ol>
+<aside class="aside-card" aria-labelledby="update-t">
+<h3 id="update-t">To update</h3>
+<p>Download the new zip, replace the folder’s contents and click Coverly Shelf’s reload button on the extensions page.</p>
+<p>Want to read the code first? It is all in <a href="https://github.com/MAECLY/coverly-shelf">MAECLY/coverly-shelf</a>.</p>
+</aside>
+</div>
+</div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-t">
+<div class="wrap">
+<h2 id="faq-t">Questions</h2>
+<div class="faq">
+<details><summary>Why is it not on the Chrome Web Store?</summary><div><p>It has not been submitted yet. Until then you install it by hand from GitHub, built from the same code you can read in the repository. When it is published, this page will say so.</p></div></details>
+<details><summary>Which sites does it work on?</summary><div><p>On hShop title pages (<code>hshop.erista.me/t/…</code>). On every other site it does nothing. Coverly Shelf is an independent project, not affiliated with hShop or Nintendo.</p></div></details>
+<details><summary>Does it change anything about downloads?</summary><div><p>No. The extension only adds pictures next to the page’s text. It does not read or change links, buttons or files.</p></div></details>
+<details><summary>Does it send data anywhere?</summary><div><p>No. It only requests images from art.gametdb.com and thumbnails.libretro.com, and remembers in your browser’s storage what it found for each game. There are no analytics and no account.</p></div></details>
+<details><summary>What if a game has no cover?</summary><div><p>It tries other regions and sources; if it finds nothing, it adds nothing and the page stays as it was.</p></div></details>
+<details><summary>Is there a Firefox version?</summary><div><p>It is planned. Once there is a tested build, it will appear in the GitHub releases and on this page.</p></div></details>
+<details><summary>Is it free?</summary><div><p>Yes. It costs nothing, needs no account and its code is AGPL-3.0.</p></div></details>
+</div>
+</div>
+</section>
+
+<section class="section" id="credits" aria-labelledby="credits-t">
+<div class="wrap">
+<h2 id="credits-t">Where the pictures come from</h2>
+<div class="credits-grid">
+<div><h3>GameTDB</h3><p>Covers come from <a href="https://www.gametdb.com/">GameTDB</a>, a community-maintained game database. The images belong to their owners.</p></div>
+<div><h3>Libretro</h3><p>Screenshots and title screens come from <a href="https://thumbnails.libretro.com/">libretro-thumbnails</a>, the Libretro project’s thumbnail archive.</p></div>
+<div class="family"><img src="../assets/coverly-roms.png" width="48" height="48" alt=""><div><h3>Part of the Coverly ROMs family</h3><p><a href="https://coverly-roms.maecly.com/">Coverly ROMs</a> does the same for the ROMs on your SD card: it finds the missing covers and adds them.</p></div></div>
+</div>
+</div>
+</section>
+
+</main>
+
+<dialog class="lightbox" aria-label="Example gallery">
+<span class="screen s1"></span>
+<div class="lightbox-bar">
+<p><span data-caption></span> <span data-count></span></p>
+<button type="button" data-prev aria-label="Previous">←</button>
+<button type="button" data-next aria-label="Next">→</button>
+<button type="button" data-close>Close</button>
+</div>
+</dialog>
+
+<footer class="footer">
+<div class="wrap footer-inner">
+<p class="maecly">A <a href="https://maecly.com">MAECLY</a> product</p>
+<nav aria-label="Links">
+<a href="https://github.com/MAECLY/coverly-shelf">Source code</a>
+<a href="https://github.com/MAECLY/coverly-shelf/releases">Releases</a>
+<a href="https://coverly-roms.maecly.com/">Coverly ROMs</a>
+<a href="https://github.com/MAECLY/coverly-shelf-landing/blob/main/THIRD-PARTY-NOTICES.md">Third-party notices</a>
+<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL-3.0 licence</a>
+</nav>
+<p class="legal">Coverly Shelf is an independent project, not affiliated with hShop, GameTDB, Libretro or Nintendo. The covers and screenshots the extension shows belong to their owners and load from their sources; this page includes none of them.</p>
+</div>
+</footer>
+</body>
+</html>
