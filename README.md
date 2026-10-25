@@ -9,7 +9,8 @@ extension itself, its releases and its issues live in
 [MAECLY/coverly-shelf](https://github.com/MAECLY/coverly-shelf).
 
 Coverly Shelf is a purely cosmetic browser extension that adds box art in a
-CSS 3D box and a screenshot gallery to 3DS title pages on hShop. It is part
+CSS 3D box and a screenshot gallery to 3DS title pages on hShop, and a
+thumbnail to every row of its lists. It is part
 of the Coverly family, next to [Coverly ROMs](https://coverly-roms.maecly.com),
 and shares its design tokens and fonts.
 

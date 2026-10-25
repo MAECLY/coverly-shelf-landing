@@ -10,7 +10,7 @@ extensión, sus versiones y sus incidencias están en
 
 Coverly Shelf es una extensión de navegador puramente cosmética que añade la
 portada en una caja 3D hecha con CSS y una galería de capturas a las fichas de
-juegos de 3DS en hShop. Forma parte de la familia Coverly, junto a
+juegos de 3DS en hShop, y una miniatura a cada fila de sus listas. Forma parte de la familia Coverly, junto a
 [Coverly ROMs](https://coverly-roms.maecly.com), y comparte sus tokens de diseño
 y sus fuentes.
 
