@@ -1,0 +1,14 @@
+# Coverly Shelf
+
+> Free, open-source (AGPL-3.0) browser extension by MAECLY that adds box art in a CSS 3D box and a screenshot gallery (with a keyboard lightbox) to 3DS title pages on hShop (hshop.erista.me/t/...). Purely cosmetic: it never touches downloads; if anything fails the page is left as it was. No tracking, no account. Permissions: storage, plus read-only access to art.gametdb.com and thumbnails.libretro.com. Not affiliated with hShop, GameTDB, Libretro or Nintendo.
+
+- Install (Chrome, Edge, Brave): download the latest zip from https://github.com/MAECLY/coverly-shelf/releases/latest, unzip it into a folder you keep, open chrome://extensions, turn on Developer mode, click "Load unpacked" and pick the folder. Not on the Chrome Web Store yet; Firefox build planned.
+- Source: https://github.com/MAECLY/coverly-shelf
+- Landing source: https://github.com/MAECLY/coverly-shelf-landing
+- Images: covers from GameTDB (https://www.gametdb.com/), screenshots from libretro-thumbnails (https://thumbnails.libretro.com/).
+- Sibling: Coverly ROMs, a desktop app that fills missing cover art on handheld SD cards: https://coverly-roms.maecly.com/
+
+## Pages
+
+- [Spanish](https://coverly-shelf.maecly.com/)
+- [English](https://coverly-shelf.maecly.com/en/)
