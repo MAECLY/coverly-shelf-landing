@@ -1,5 +1,7 @@
 # Coverly Shelf landing
 
+[![Stars](https://img.shields.io/github/stars/MAECLY/coverly-shelf-landing?style=flat-square)](https://github.com/MAECLY/coverly-shelf-landing/stargazers) [![Views](https://hits.sh/github.com/MAECLY/coverly-shelf-landing.svg?label=views&style=flat-square)](https://hits.sh/github.com/MAECLY/coverly-shelf-landing/) [![Last commit](https://img.shields.io/github/last-commit/MAECLY/coverly-shelf-landing?style=flat-square)](https://github.com/MAECLY/coverly-shelf-landing/commits/main)
+
 [Español](README.es.md)
 
 The website of [Coverly Shelf](https://github.com/MAECLY/coverly-shelf), live at
