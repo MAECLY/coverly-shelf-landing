@@ -1,7 +1,7 @@
 {
   "name": "Coverly Shelf · MAECLY",
   "short_name": "Coverly Shelf",
-  "description": "Box art in a 3D case and a screenshot gallery for 3DS title pages on hShop. Purely cosmetic, free and AGPL-3.0.",
+  "description": "Box art in a 3D case and a screenshot gallery for 3DS title pages on hShop, and thumbnails in its lists. Purely cosmetic, free and AGPL-3.0.",
   "lang": "en",
   "dir": "ltr",
   "start_url": "/en/",

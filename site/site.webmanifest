@@ -1,7 +1,7 @@
 {
   "name": "Coverly Shelf · MAECLY",
   "short_name": "Coverly Shelf",
-  "description": "Portada en caja 3D y galería de capturas para las fichas de 3DS en hShop. Solo cosmética, gratis y AGPL-3.0.",
+  "description": "Portada en caja 3D y galería de capturas para las fichas de 3DS en hShop, y miniaturas en sus listas. Solo cosmética, gratis y AGPL-3.0.",
   "lang": "es",
   "dir": "ltr",
   "start_url": "/",

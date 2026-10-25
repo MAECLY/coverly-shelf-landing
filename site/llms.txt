@@ -1,6 +1,14 @@
 # Coverly Shelf
 
-> Free, open-source (AGPL-3.0) browser extension by MAECLY that adds box art in a CSS 3D box and a screenshot gallery (with a keyboard lightbox) to 3DS title pages on hShop (hshop.erista.me/t/...). Purely cosmetic: it never touches downloads; if anything fails the page is left as it was. No tracking, no account. Permissions: storage, plus read-only access to art.gametdb.com and thumbnails.libretro.com. Not affiliated with hShop, GameTDB, Libretro or Nintendo.
+> Free, open-source (AGPL-3.0) browser extension by MAECLY that adds box art in a CSS 3D box and a screenshot gallery (with a keyboard lightbox) to 3DS title pages on hShop (hshop.erista.me/t/...), and a cover thumbnail to every row of its listing pages (/c/... and search results). Purely cosmetic: it never touches downloads; if anything fails the page is left as it was. No tracking, no account. Permissions: storage, plus read-only access to art.gametdb.com and thumbnails.libretro.com. Not affiliated with hShop, GameTDB, Libretro or Nintendo.
+
+## Features
+
+- Title pages: the cover in a 3D box, next to the technical table; click it (or focus it and press Enter or Space) to open the full-size art in a viewer. A screenshot gallery opens large and moves with the arrow keys; Esc closes.
+- Related Content rows on title pages get thumbnails. Demos, updates and DLC without art of their own use the art of the row hShop marks as the Base Title; covers are never guessed by name.
+- Listing pages: games, updates, DLC, Virtual Console, DSiWare, videos, extras, category front pages and search results, in the main list and "Top content". Rows load their art lazily. Updates, DLC and demos show their base game's art; DSiWare uses GameTDB's DS covers; Virtual Console falls back to the original system's box art on Libretro, exact title matches only. A game with no art gets a plain cover with its initials.
+- Settings page (the toolbar button opens it), in English and Spanish: keep cached artwork for this session only, 1 day, 7 days (default), 30 days or until cleared; a readout of how many games are cached and how much space they take; "Clear cache" with an in-page confirmation.
+- Requests: each candidate image is checked with a HEAD request first, so missing art is ruled out without downloading it; at most 4 artwork requests at once. "Top content" rows that show no product code are looked up on hShop itself (at most 2 at once). Expired cache entries are deleted once a day.
 
 - Install (Chrome, Edge, Brave): download the latest zip from https://github.com/MAECLY/coverly-shelf/releases/latest, unzip it into a folder you keep, open chrome://extensions, turn on Developer mode, click "Load unpacked" and pick the folder. Not on the Chrome Web Store yet; Firefox build planned.
 - Source: https://github.com/MAECLY/coverly-shelf
