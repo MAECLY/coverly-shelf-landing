@@ -10,4 +10,14 @@
 <xhtml:link rel="alternate" hreflang="es" href="https://coverly-shelf.maecly.com/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://coverly-shelf.maecly.com/en/"/>
 </url>
+<url>
+<loc>https://coverly-shelf.maecly.com/privacy/</loc>
+<xhtml:link rel="alternate" hreflang="es" href="https://coverly-shelf.maecly.com/privacy/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://coverly-shelf.maecly.com/en/privacy/"/>
+</url>
+<url>
+<loc>https://coverly-shelf.maecly.com/en/privacy/</loc>
+<xhtml:link rel="alternate" hreflang="es" href="https://coverly-shelf.maecly.com/privacy/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://coverly-shelf.maecly.com/en/privacy/"/>
+</url>
 </urlset>
