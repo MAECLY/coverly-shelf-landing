@@ -16,6 +16,9 @@ Gates, in the spirit of the Coverly ROMs landing's checks:
            than JSON-LD, no third-party scripts, styles or trackers, images
            sized and described
   budget   page, CSS, JS and image sizes
+  motion   keyframes and transitions move only compositor or paint
+           properties (no layout), and no keyframe that starts hidden
+           keeps text hidden for more than a second
   metrics  each page has one empty, hidden data-metric slot for downloads
            and one for stars (apply_metrics.py fills them at build time,
            only with a known number above zero)
@@ -47,7 +50,8 @@ CANONICAL = {"es": f"https://{HOST}/", "en": f"https://{HOST}/en/"}
 REQUIRED = [
     "index.html", "en/index.html", "404.html", "privacy/index.html", "en/privacy/index.html", "robots.txt", "sitemap.xml",
     "llms.txt", "site.webmanifest", "en/site.webmanifest", "favicon.ico",
-    "assets/tokens.css", "assets/site.css", "assets/theme.js", "assets/shelf.js",
+    "assets/tokens.css", "assets/site.css", "assets/motion.css", "assets/theme.js", "assets/shelf.js",
+    "assets/motion.js",
     "assets/favicon.svg", "assets/mark.svg", "assets/mark-dark.svg",
     "assets/icon-192.png", "assets/icon-512.png", "assets/icon-maskable-512.png",
     "assets/apple-touch-icon.png", "assets/og.png", "assets/og-en.png",
@@ -267,6 +271,128 @@ def check_budget(site: Path) -> None:
             fail("budget", f"{f.relative_to(site)}: looks like a tracker")
 
 
+# ── motion ─────────────────────────────────────────────────────────────
+
+# What a keyframe or transition may move: compositor-friendly or paint-only
+# properties. Anything that moves layout (sizes, offsets, margins) shifts
+# the page, so it fails. The exceptions answer a click: the FAQ answer's
+# height, and the lightbox's discrete display/overlay switch.
+MOVES = {
+    "transform", "opacity", "visibility", "clip-path", "stroke-dashoffset",
+    "background-color", "outline-color", "color", "border-color", "box-shadow",
+}
+USER_LAYOUT = {
+    ("::details-content", "block-size"), ("::details-content", "content-visibility"),
+    (".lightbox", "display"), (".lightbox", "overlay"),
+}
+TEXT = re.compile(r"(^|[\s>+~])(h[1-6]|p|li|a|img|picture|figure|button|\.btn)$")
+# Stagger indices (--n, --r) are assumed to reach this when delays are checked.
+STAGGER = 3
+
+
+def css_rules(css: str) -> list[tuple[list[str], str, str]]:
+    """(enclosing at-rule preludes, selector, body) for every style rule."""
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    out: list[tuple[list[str], str, str]] = []
+    stack: list[str] = []
+    buf = ""
+    i = 0
+    while i < len(css):
+        ch = css[i]
+        if ch == "{":
+            prelude = buf.strip()
+            buf = ""
+            if prelude.startswith("@") and not prelude.startswith("@font-face"):
+                stack.append(prelude)
+            else:
+                end = css.index("}", i)
+                out.append((stack[:], prelude, css[i + 1:end]))
+                i = end
+        elif ch == "}":
+            if stack:
+                stack.pop()
+            buf = ""
+        else:
+            buf += ch
+        i += 1
+    return out
+
+
+def decls(body: str) -> list[tuple[str, str]]:
+    return [(k.strip().lower(), v.strip()) for k, _, v in
+            (d.partition(":") for d in body.split(";")) if v.strip()]
+
+
+def tokens(value: str) -> list[str]:
+    """Split on spaces outside parentheses: calc(1ms + 2ms) stays whole."""
+    out, depth, cur = [], 0, ""
+    for ch in value:
+        depth += (ch == "(") - (ch == ")")
+        if ch.isspace() and depth == 0:
+            if cur:
+                out.append(cur)
+            cur = ""
+        else:
+            cur += ch
+    return out + ([cur] if cur else [])
+
+
+def seconds(tok: str) -> float | None:
+    """A time, or a calc() of times with var() read as STAGGER."""
+    expr = re.sub(r"var\(--[\w-]+(,[^)]*)?\)", str(STAGGER), tok)
+    if not re.search(r"\d(m?s)\b", expr):
+        return None
+    expr = re.sub(r"([\d.]+)ms\b", r"(\1/1000)", re.sub(r"^calc", "", expr))
+    expr = re.sub(r"([\d.]+)s\b", r"(\1)", expr)
+    if not re.fullmatch(r"[\d.+\-*/() ]+", expr):
+        return None
+    try:
+        return float(eval(expr, {"__builtins__": {}}))  # digits and operators only
+    except (SyntaxError, ZeroDivisionError):
+        return None
+
+
+def check_motion(site: Path) -> None:
+    rules: list[tuple[list[str], str, str]] = []
+    for rel in ("assets/site.css", "assets/motion.css"):
+        rules += css_rules((site / rel).read_text(encoding="utf-8").replace('"', "'"))
+    hiding: set[str] = set()
+    for stack, sel, body in rules:
+        frame = [p for p in stack if p.startswith("@keyframes")]
+        if frame:
+            for prop, _ in decls(body):
+                if prop not in MOVES:
+                    fail("motion", f"{frame[-1]} animates {prop} (layout)")
+            if any(s.strip() in ("from", "0%") for s in sel.split(",")) and any(
+                    (p, v) in (("opacity", "0"), ("visibility", "hidden")) for p, v in decls(body)):
+                hiding.add(frame[-1].split()[1])
+            continue
+        for prop, val in decls(body):
+            if prop in ("transition", "transition-property") and not val.startswith("none"):
+                for part in val.split(","):
+                    name = part.split()[0] if part.split() else ""
+                    if name not in MOVES and not any(s in sel and p == name for s, p in USER_LAYOUT):
+                        fail("motion", f"{sel}: transition on {name} (layout)")
+    for stack, sel, body in rules:
+        if any(p.startswith("@keyframes") for p in stack):
+            continue
+        d = dict(decls(body))
+        for part in d.get("animation", d.get("animation-name", "")).split(","):
+            toks = tokens(part)
+            name = next((t for t in toks if t in hiding), None)
+            if not name:
+                continue
+            texty = [s.strip() for s in sel.split(",")
+                     if TEXT.search(re.sub(r":[\w-]+(\([^)]*\))?", "", s.strip()))]
+            if not texty:
+                continue
+            times = [t for t in (seconds(x) for x in toks) if t is not None]
+            delay = seconds(d["animation-delay"]) if "animation-delay" in d else \
+                (times[1] if len(times) > 1 else 0.0)
+            if delay and delay > 1:
+                fail("motion", f"{texty[0]}: {name} hides text for {delay:g}s before it shows")
+
+
 def check_metrics(site: Path) -> None:
     for rel in PAGES.values():
         found = SLOT.findall((site / rel).read_text(encoding="utf-8"))
@@ -289,12 +415,13 @@ def main() -> int:
     check_parity(pages)
     check_head(site, pages)
     check_budget(site)
+    check_motion(site)
     check_metrics(site)
     if failures:
         print("\n".join(failures))
         print(f"\n{len(failures)} check(s) failed.")
         return 1
-    print("site: files, links, parity, head, budget and metrics checks passed")
+    print("site: files, links, parity, head, budget, motion and metrics checks passed")
     return 0
 
 

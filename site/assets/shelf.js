@@ -1,7 +1,8 @@
 /* The two interactive bits of the page, both optional (the page reads the
    same without them):
-   1. A CSS box turns when dragged, or with the arrow keys once focused
-      (only when the page has one in the hero).
+   1. The CSS box in "what it adds" turns when dragged (mouse or finger).
+      It is decorative and inside aria-hidden, so it never takes focus and
+      the arrow-key handler stays idle there; it only helps a focusable box.
    2. The screenshot thumbnails open a lightbox that works like the extension's:
       Left/Right to move, Escape to close. */
 (function () {
@@ -50,6 +51,11 @@
     var at = 0, opener = null;
     function show(i) {
       at = (i + thumbs.length) % thumbs.length;
+      if (dialog.open) { /* replay the cross-fade (motion.css) */
+        shot.classList.remove("swap");
+        void shot.offsetWidth;
+        shot.classList.add("swap");
+      }
       var t = thumbs[at];
       var light = document.documentElement.getAttribute("data-theme") === "light";
       shot.src = (light && t.getAttribute("data-full-light")) || t.getAttribute("data-full");
@@ -76,7 +82,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    var box = document.querySelector(".hero .box");
+    var box = document.querySelector(".hero .box, .pic-box .box");
     if (box) turnable(box);
     var dialog = document.querySelector(".lightbox");
     var thumbs = Array.prototype.slice.call(document.querySelectorAll(".strip [data-full]"));

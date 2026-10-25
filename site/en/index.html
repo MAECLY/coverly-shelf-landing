@@ -24,8 +24,10 @@
 <link rel="preload" href="../assets/fonts/atkinson-hyperlegible-next-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/tokens.css">
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/motion.css">
 <script src="../assets/theme.js"></script>
 <script src="../assets/shelf.js" defer></script>
+<script src="../assets/motion.js" defer></script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Coverly Shelf">
 <meta property="og:locale" content="en_GB">
@@ -163,11 +165,21 @@
 </div>
 <figcaption class="stage-note">A real hShop list, in the same colour mode as this page. Box art: <a href="https://www.gametdb.com/">GameTDB</a>. A game with no cover in any source gets a plain cover with its initials.</figcaption>
 </figure>
+<div class="lists-side">
+<div class="rowmock" aria-hidden="true">
+<span class="row"><span class="slot"></span><span class="bar"></span><span class="bar"></span></span>
+<span class="row"><span class="slot"></span><span class="bar"></span><span class="bar"></span></span>
+<span class="row"><span class="slot"></span><span class="bar"></span><span class="bar"></span></span>
+<span class="row"><span class="slot"></span><span class="bar"></span><span class="bar"></span></span>
+<span class="row"><span class="slot"></span><span class="bar"></span><span class="bar"></span></span>
+<span class="row"><span class="slot slot-ns">NS</span><span class="bar"></span><span class="bar"></span></span>
+</div>
 <ul class="notes">
 <li><h3>In every list</h3><p>Games, updates, DLC, Virtual Console, DSiWare, videos and extras: each category’s main page, each region and search results. A row only asks for its image when it scrolls near the screen.</p></li>
 <li><h3>Updates, DLC and demos</h3><p>They show the cover of the game they belong to.</p></li>
 <li><h3>DSiWare and Virtual Console</h3><p>DSiWare uses GameTDB’s DS covers. When GameTDB lacks a Virtual Console game, it uses the original system’s box art from Libretro, and only when the title matches exactly.</p></li>
 </ul>
+</div>
 </div>
 </div>
 </section>
@@ -177,6 +189,7 @@
 <div>
 <h2 id="settings-t">You decide how long it keeps things</h2>
 <p class="intro">To avoid repeating requests, Coverly Shelf remembers which image worked for each game, and which ones do not exist. Its toolbar button opens the settings, in English or Spanish.</p>
+<div class="seg" aria-hidden="true"><span class="seg-opts"><span>Session</span><span>1 d</span><span class="on">7 d</span><span>30 d</span><span>Always</span><span class="thumb"></span></span><span class="meter"><i></i></span></div>
 <ul class="notes">
 <li><h3>How long</h3><p>This session only, 1 day, 7 days (the default), 30 days or until you clear it. Expired entries are deleted once a day, so it does not keep growing.</p></li>
 <li><h3>How much space</h3><p>The settings show how many games are cached and how much space they take.</p></li>
@@ -196,10 +209,10 @@
 <p class="intro">The extension leaves everything the page does alone. Here is what it can and cannot do.</p>
 <div class="safety-grid">
 <ul class="promises">
-<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 5 6v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><h3>It never touches downloads</h3><p>It only adds pictures. It does not change links, buttons or anything you download.</p></li>
-<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>If something fails, the page is untouched</h3><p>If the page changes or the image sources are unreachable, it removes what it added and the page looks as it always did. A game with no cover gets a plain one, never a broken image.</p></li>
-<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 11V8a4 4 0 0 1 8 0v3M6 11h12v9H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><h3>Only the permissions it needs</h3><p>Remembering in your browser which images it found, so it does not ask again, and reading images from two sites. Nothing else: the toolbar button that opens the settings needs no permission.</p></li>
-<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6zM4 4l16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><h3>No tracking, no account</h3><p>No analytics, no sign-up, no server of its own. What you browse stays in your browser.</p></li>
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M12 3 5 6v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><h3>It never touches downloads</h3><p>It only adds pictures. It does not change links, buttons or anything you download.</p></li>
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>If something fails, the page is untouched</h3><p>If the page changes or the image sources are unreachable, it removes what it added and the page looks as it always did. A game with no cover gets a plain one, never a broken image.</p></li>
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 11V8a4 4 0 0 1 8 0v3M6 11h12v9H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><h3>Only the permissions it needs</h3><p>Remembering in your browser which images it found, so it does not ask again, and reading images from two sites. Nothing else: the toolbar button that opens the settings needs no permission.</p></li>
+<li><svg class="art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6zM4 4l16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><h3>No tracking, no account</h3><p>No analytics, no sign-up, no server of its own. What you browse stays in your browser.</p></li>
 </ul>
 <figure class="manifest">
 <figcaption>The permissions, as the manifest declares them</figcaption>

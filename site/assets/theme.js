@@ -49,6 +49,25 @@
     else if (dark.addListener) dark.addListener(follow);
   }
 
+  /* The new mode spreads as a circle from the control that picked it
+     (motion.css), only while html.anim stands and the theme changes. */
+  function spread(from, next) {
+    var calm = !window.matchMedia || matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!document.startViewTransition || calm || !html.classList.contains("anim") ||
+        resolve(next) === html.getAttribute("data-theme")) return apply(next);
+    var r = from.getBoundingClientRect();
+    html.style.setProperty("--ink-x", Math.round(r.left + r.width / 2) + "px");
+    html.style.setProperty("--ink-y", Math.round(r.top + r.height / 2) + "px");
+    html.classList.add("vt-ink");
+    var end = function () { html.classList.remove("vt-ink"); };
+    try {
+      document.startViewTransition(function () { apply(next); }).finished.then(end, end);
+    } catch (err) {
+      end();
+      apply(next);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     apply(mode);
     var radios = document.querySelectorAll('input[name="mode"]');
@@ -59,7 +78,7 @@
           if (mode === "system") localStorage.removeItem(KEY);
           else localStorage.setItem(KEY, mode);
         } catch (err) {}
-        apply(mode);
+        spread(e.target.parentNode, mode);
       });
     }
   });
