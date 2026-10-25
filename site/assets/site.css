@@ -297,7 +297,8 @@ html:not(.js) .mode {
   line-height: 0.96;
   font-stretch: 82%;
   letter-spacing: -0.012em;
-  max-width: 11ch;
+  max-width: 12ch;
+  text-wrap: pretty;
 }
 .hero .lead {
   font: var(--cr-type-landing-lead);
