@@ -318,6 +318,7 @@ html:not(.js) .mode {
 /* The stage: a stand-in for a game's title page, before and after. */
 .stage {
   position: relative;
+  margin: 0;
   background: var(--cr-surface);
   border: 1px solid var(--cr-border);
   border-radius: var(--cr-radius-xl);
