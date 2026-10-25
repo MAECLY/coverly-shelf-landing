@@ -778,7 +778,7 @@ kbd {
 }
 @media (min-width: 900px) {
   .install-grid {
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     gap: 64px;
   }
 }
@@ -910,6 +910,87 @@ kbd {
   height: 48px;
   flex: none;
   border-radius: 11px;
+}
+
+/* ── Real captures with a caption (title page, lists, settings) ───── */
+
+/* Two captures side by side at the same height: the columns are in the
+   ratio of the images' aspect ratios (cover-zoom 640/571, related 760/408). */
+.duo {
+  display: grid;
+  gap: 48px;
+  margin-top: 64px;
+}
+@media (min-width: 860px) {
+  .duo {
+    grid-template-columns: 112fr 186fr;
+    gap: 40px;
+    align-items: start;
+  }
+}
+.shot-card {
+  margin: 0;
+}
+.shot-card figcaption {
+  margin-top: 18px;
+}
+.shot-card p,
+.notes p {
+  margin-top: 8px;
+  color: var(--cr-text-secondary);
+}
+.shot-card .keys {
+  margin-top: 12px;
+}
+
+/* Listing pages: the stage with a real list, and the notes beside it. */
+.lists-grid {
+  display: grid;
+  gap: 48px;
+  margin-top: 56px;
+  align-items: start;
+}
+/* Let the stage shrink below its one-line URL on phones. */
+.lists-grid > * {
+  min-width: 0;
+}
+@media (min-width: 980px) {
+  .lists-grid {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 56px;
+  }
+}
+.notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 28px;
+}
+.notes li {
+  padding-left: 18px;
+  border-left: 4px solid var(--cr-manila);
+}
+
+/* Settings: the text and the settings page, side by side. */
+.split {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+@media (min-width: 980px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+}
+.split .notes {
+  margin-top: 36px;
+}
+.split .shot-card {
+  width: 100%;
+  max-width: 480px;
+  justify-self: center;
 }
 
 /* ── Footer ───────────────────────────────────────────────────────── */

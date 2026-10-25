@@ -61,6 +61,8 @@
 <a class="brand" href="./"><img src="../assets/favicon.svg" width="30" height="30" alt=""><span class="wordmark">Coverly <b>Shelf</b></span></a>
 <nav class="topnav" aria-label="Sections">
 <a href="#features">What it does</a>
+<a href="#lists">Lists</a>
+<a href="#settings">Settings</a>
 <a href="#safety">Safety</a>
 <a href="#install">Install</a>
 <a href="#faq">FAQ</a>
@@ -133,6 +135,56 @@
 <p>It follows the page’s colours and type, in light mode and dark mode, so it looks like part of it.</p>
 </article>
 </div>
+<div class="duo">
+<figure class="shot-card">
+<div class="shot"><img src="../assets/shots/cover-zoom.webp" width="640" height="571" alt="The box art viewer open over the hShop page for Batman - Arkham Origins Blackgate, in hShop’s dark theme: the cover full size over the dimmed page." loading="lazy"></div>
+<figcaption><h3>The cover, full size</h3><p>Click the box, or Tab to it and press Enter or Space, to see the cover art large, at the best quality available. Esc closes it and focus goes back to the box.</p><p class="keys"><kbd>Enter</kbd><kbd>Space</kbd><kbd>Esc</kbd></p></figcaption>
+</figure>
+<figure class="shot-card">
+<div class="shot"><img src="../assets/shots/related-6881.webp" width="760" height="408" alt="The Related Content section of an hShop page in the dark theme: a Project X Zone demo and the base game, both rows with a thumbnail of the same cover." loading="lazy"></div>
+<figcaption><h3>Related content gets thumbnails</h3><p>Every Related Content row (demos, the update, DLC or the base game) gets its thumbnail. When a demo or DLC has no art of its own, it uses the art of the row hShop marks as its Base Title: a cover is never guessed from the name.</p></figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<section class="section" id="lists" aria-labelledby="lists-t">
+<div class="wrap">
+<h2 id="lists-t">And in every list, a cover per row</h2>
+<p class="intro">hShop’s lists are rows of text: name, ID and product code. Coverly Shelf puts a small cover at the start of every row, in the main list and in “Top content”.</p>
+<div class="lists-grid">
+<figure class="stage">
+<p class="stage-url"><svg class="art" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 5V3.8a2.5 2.5 0 0 1 5 0V5M2.5 5h7v5.5h-7z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>hshop.erista.me/c/games/s/north-america</p>
+<div class="shot">
+<img class="shot-light" src="../assets/shots/list-na-light@1x.webp" srcset="../assets/shots/list-na-light@1x.webp 560w, ../assets/shots/list-na-light.webp 1112w" sizes="(max-width: 979px) calc(100vw - 72px), 600px" width="1112" height="656" alt="hShop’s list of North American games with Coverly Shelf: every row starts with a thumbnail of the game’s box, such as 3D Classics Excitebike and Yo-kai Watch 3, and the row of a game with no cover in any source gets a plain cover with its initials, “NS”." loading="lazy">
+<img class="shot-dark" src="../assets/shots/list-na-dark@1x.webp" srcset="../assets/shots/list-na-dark@1x.webp 560w, ../assets/shots/list-na-dark.webp 1112w" sizes="(max-width: 979px) calc(100vw - 72px), 600px" width="1112" height="656" alt="hShop’s list of North American games with Coverly Shelf: every row starts with a thumbnail of the game’s box, such as 3D Classics Excitebike and Yo-kai Watch 3, and the row of a game with no cover in any source gets a plain cover with its initials, “NS”." loading="lazy">
+</div>
+<figcaption class="stage-note">A real hShop list, in the same colour mode as this page. Box art: <a href="https://www.gametdb.com/">GameTDB</a>. A game with no cover in any source gets a plain cover with its initials.</figcaption>
+</figure>
+<ul class="notes">
+<li><h3>In every list</h3><p>Games, updates, DLC, Virtual Console, DSiWare, videos and extras: each category’s main page, each region and search results. A row only asks for its image when it scrolls near the screen.</p></li>
+<li><h3>Updates, DLC and demos</h3><p>They show the cover of the game they belong to.</p></li>
+<li><h3>DSiWare and Virtual Console</h3><p>DSiWare uses GameTDB’s DS covers. When GameTDB lacks a Virtual Console game, it uses the original system’s box art from Libretro, and only when the title matches exactly.</p></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="section" id="settings" aria-labelledby="settings-t">
+<div class="wrap split">
+<div>
+<h2 id="settings-t">You decide how long it keeps things</h2>
+<p class="intro">To avoid repeating requests, Coverly Shelf remembers which image worked for each game, and which ones do not exist. Its toolbar button opens the settings, in English or Spanish.</p>
+<ul class="notes">
+<li><h3>How long</h3><p>This session only, 1 day, 7 days (the default), 30 days or until you clear it. Expired entries are deleted once a day, so it does not keep growing.</p></li>
+<li><h3>How much space</h3><p>The settings show how many games are cached and how much space they take.</p></li>
+<li><h3>Clear cache</h3><p>Empties it all at once, after you confirm on the same page. It never stores personal data or your browsing history.</p></li>
+</ul>
+</div>
+<figure class="shot-card">
+<div class="shot"><img class="shot-light" src="../assets/shots/options-light.webp" width="600" height="640" alt="The Coverly Shelf settings page: the Cache section with “1 game cached, 574 bytes”, the choice of how long to keep artwork (This session, 1 day, 7 days selected, 30 days, Until I clear it) and the Clear cache button." loading="lazy"><img class="shot-dark" src="../assets/shots/options-dark.webp" width="600" height="640" alt="The Coverly Shelf settings page: the Cache section with “1 game cached, 574 bytes”, the choice of how long to keep artwork (This session, 1 day, 7 days selected, 30 days, Until I clear it) and the Clear cache button." loading="lazy"></div>
+<figcaption class="stage-note">The settings in English. With the browser in Spanish, they appear in Spanish.</figcaption>
+</figure>
 </div>
 </section>
 

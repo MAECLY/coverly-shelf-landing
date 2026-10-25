@@ -61,6 +61,8 @@
 <a class="brand" href="./"><img src="assets/favicon.svg" width="30" height="30" alt=""><span class="wordmark">Coverly <b>Shelf</b></span></a>
 <nav class="topnav" aria-label="Secciones">
 <a href="#que-hace">Qué hace</a>
+<a href="#listas">Listas</a>
+<a href="#ajustes">Ajustes</a>
 <a href="#seguridad">Seguridad</a>
 <a href="#instalar">Instalar</a>
 <a href="#preguntas">Preguntas</a>
@@ -133,6 +135,56 @@
 <p>Sigue los colores y la tipografía de la página, tanto en modo claro como en oscuro, para que parezca parte de ella.</p>
 </article>
 </div>
+<div class="duo">
+<figure class="shot-card">
+<div class="shot"><img src="assets/shots/cover-zoom.webp" width="640" height="571" alt="El visor de portadas abierto sobre la ficha de Batman - Arkham Origins Blackgate, en el tema oscuro de hShop: la carátula a tamaño completo sobre la página atenuada." loading="lazy"></div>
+<figcaption><h3>La portada, a tamaño completo</h3><p>Pulsa la caja, o llega a ella con el tabulador y pulsa Intro o Espacio, para ver la carátula en grande y con la mejor calidad que haya. Esc la cierra y el foco vuelve a la caja.</p><p class="keys"><kbd>Intro</kbd><kbd>Espacio</kbd><kbd>Esc</kbd></p></figcaption>
+</figure>
+<figure class="shot-card">
+<div class="shot"><img src="assets/shots/related-6881.webp" width="760" height="408" alt="La sección Related Content de una ficha de hShop en tema oscuro: una demo de Project X Zone y el juego base, y las dos filas llevan una miniatura de la misma portada." loading="lazy"></div>
+<figcaption><h3>El contenido relacionado, con miniatura</h3><p>Cada fila de «Related Content» (las demos, la actualización, los DLC o el juego base) lleva su miniatura. Si una demo o un DLC no tiene imagen propia, usa la del juego que hShop marca como «Base Title»: nunca adivina una portada por el nombre.</p></figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<section class="section" id="listas" aria-labelledby="listas-t">
+<div class="wrap">
+<h2 id="listas-t">Y en las listas, una portada por fila</h2>
+<p class="intro">Las listas de hShop son filas de texto: nombre, ID y código del producto. Coverly Shelf pone una portada pequeña al principio de cada fila, en la lista principal y en «Top content».</p>
+<div class="lists-grid">
+<figure class="stage">
+<p class="stage-url"><svg class="art" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3.5 5V3.8a2.5 2.5 0 0 1 5 0V5M2.5 5h7v5.5h-7z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>hshop.erista.me/c/games/s/north-america</p>
+<div class="shot">
+<img class="shot-light" src="assets/shots/list-na-light@1x.webp" srcset="assets/shots/list-na-light@1x.webp 560w, assets/shots/list-na-light.webp 1112w" sizes="(max-width: 979px) calc(100vw - 72px), 600px" width="1112" height="656" alt="La lista de juegos de Norteamérica en hShop con Coverly Shelf: cada fila empieza con una miniatura de la caja del juego, como 3D Classics Excitebike y Yo-kai Watch 3, y la de un juego sin portada en ninguna fuente lleva una carátula lisa con sus iniciales, «NS»." loading="lazy">
+<img class="shot-dark" src="assets/shots/list-na-dark@1x.webp" srcset="assets/shots/list-na-dark@1x.webp 560w, assets/shots/list-na-dark.webp 1112w" sizes="(max-width: 979px) calc(100vw - 72px), 600px" width="1112" height="656" alt="La lista de juegos de Norteamérica en hShop con Coverly Shelf: cada fila empieza con una miniatura de la caja del juego, como 3D Classics Excitebike y Yo-kai Watch 3, y la de un juego sin portada en ninguna fuente lleva una carátula lisa con sus iniciales, «NS»." loading="lazy">
+</div>
+<figcaption class="stage-note">Una lista real de hShop, en el mismo modo de color que esta página. Portadas: <a href="https://www.gametdb.com/">GameTDB</a>. Si un juego no tiene portada en ninguna fuente, lleva una carátula lisa con sus iniciales.</figcaption>
+</figure>
+<ul class="notes">
+<li><h3>En todas las listas</h3><p>Juegos, actualizaciones, DLC, Consola Virtual, DSiWare, vídeos y extras: la página principal de cada categoría, cada región y los resultados de búsqueda. Cada fila pide su imagen solo cuando se acerca a la pantalla.</p></li>
+<li><h3>Actualizaciones, DLC y demos</h3><p>Llevan la portada del juego al que pertenecen.</p></li>
+<li><h3>DSiWare y Consola Virtual</h3><p>DSiWare usa las portadas de DS de GameTDB. Si a un juego de Consola Virtual le falta en GameTDB, usa la caja del juego original en Libretro, y solo cuando el título coincide exactamente.</p></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="section" id="ajustes" aria-labelledby="ajustes-t">
+<div class="wrap split">
+<div>
+<h2 id="ajustes-t">Tú decides cuánto tiempo guarda</h2>
+<p class="intro">Para no repetir peticiones, Coverly Shelf recuerda qué imagen funcionó para cada juego, y también cuáles no existen. Su botón en la barra del navegador abre los ajustes, en español o en inglés.</p>
+<ul class="notes">
+<li><h3>Cuánto tiempo</h3><p>Solo esta sesión, 1 día, 7 días (lo predeterminado), 30 días o hasta que lo borres. Lo caducado se elimina una vez al día, así que no crece sin parar.</p></li>
+<li><h3>Cuánto ocupa</h3><p>Los ajustes muestran cuántos juegos hay guardados y cuánto espacio ocupan.</p></li>
+<li><h3>Borrar caché</h3><p>Lo vacía todo de una vez, después de confirmarlo en la misma página. Nunca guarda datos personales ni tu historial.</p></li>
+</ul>
+</div>
+<figure class="shot-card">
+<div class="shot"><img class="shot-light" src="assets/shots/options-light.webp" width="600" height="640" alt="La página de ajustes de Coverly Shelf en inglés: la sección Cache con «1 game cached, 574 bytes», el selector de cuánto conservar las imágenes (This session, 1 day, 7 days marcado, 30 days, Until I clear it) y el botón Clear cache." loading="lazy"><img class="shot-dark" src="assets/shots/options-dark.webp" width="600" height="640" alt="La página de ajustes de Coverly Shelf en inglés: la sección Cache con «1 game cached, 574 bytes», el selector de cuánto conservar las imágenes (This session, 1 day, 7 days marcado, 30 days, Until I clear it) y el botón Clear cache." loading="lazy"></div>
+<figcaption class="stage-note">Los ajustes en inglés. Con el navegador en español, aparecen en español.</figcaption>
+</figure>
 </div>
 </section>
 
