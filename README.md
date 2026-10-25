@@ -43,9 +43,9 @@ Cloudflare zone pointing at Vercel.
 |---|---|
 | `site/index.html`, `site/en/index.html` | The two pages, written by hand; keep them in step (the parity gate checks it) |
 | `site/assets/site.css` | All layout; colours and type come from `tokens.css` |
-| `site/assets/shelf.js` | The turnable hero box and the gallery lightbox demo |
+| `site/assets/shelf.js` | The screenshot lightbox and the turnable CSS box |
 | `site/assets/theme.js` | Light/dark/system mode and the reduced-motion gate |
-| `site/assets/shots/` | Slot for real screenshots of the extension (see its README) |
+| `site/assets/shots/` | Real screenshots of the extension, as WebP (see its README) |
 | `design/icon/` | The Boxed icon, source of every icon (`make icons`) |
 | `design/tokens.json` | Coverly family tokens (`make tokens`, `make sync-tokens`) |
 

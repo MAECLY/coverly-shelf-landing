@@ -3,8 +3,21 @@
 The Coverly Shelf landing (https://coverly-shelf.maecly.com) is licensed under
 the GNU Affero General Public License v3.0 (see `LICENSE`), like the extension
 in [MAECLY/coverly-shelf](https://github.com/MAECLY/coverly-shelf). The page
-uses no third-party code and includes no third-party game art: the 3D box and
-the screenshots on the page are drawn in CSS.
+uses no third-party code. The 3D box and the screens in the feature cards are
+drawn in CSS.
+
+## Screenshots of the extension
+
+`site/assets/shots/*.webp` are screenshots of the extension running on live
+hShop title pages (https://hshop.erista.me/t/1814 and /t/18761). They show:
+
+- box art from **GameTDB** (https://www.gametdb.com/);
+- screenshots and title screens from **libretro-thumbnails**
+  (https://thumbnails.libretro.com/);
+- the hShop page itself.
+
+They are shown to document what the extension does, are credited in the
+caption on the page, and belong to their respective owners.
 
 ## Image sources the extension uses
 
