@@ -255,27 +255,28 @@ html.vt-ink::view-transition-new(root) {
 }
 
 /* The list mock: each row gets its cover as that row crosses into the
-   screen, like the extension's lazy rows. Decoration only, scrubbed. */
+   screen, like the extension's lazy rows. Scrubbed by the scroll; behind
+   html.motion so a page without JS, or printed, shows every cover. */
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media screen and (prefers-reduced-motion: no-preference) {
     .rowmock {
       view-timeline: --rows block;
     }
-    .rowmock .slot,
-    .rowmock .slot::after,
-    .rowmock .bar {
+    html.motion .rowmock .slot,
+    html.motion .rowmock .slot::after,
+    html.motion .rowmock .bar {
       animation-timeline: --rows;
       animation-range: entry calc(var(--r, 0) * 15% + 20%) entry calc(var(--r, 0) * 15% + 40%);
       animation-fill-mode: both;
       animation-timing-function: var(--cr-ease-ink);
     }
-    .rowmock .slot {
+    html.motion .rowmock .slot {
       animation-name: slot-pop;
     }
-    .rowmock .slot::after {
+    html.motion .rowmock .slot::after {
       animation-name: slot-empty;
     }
-    .rowmock .bar {
+    html.motion .rowmock .bar {
       animation-name: draw-x;
     }
   }
@@ -294,6 +295,125 @@ html.vt-ink::view-transition-new(root) {
     html.motion .rowmock.is-in .bar {
       animation-name: draw-x;
     }
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+@keyframes hl {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  35% {
+    background-color: color-mix(in srgb, var(--cr-manila) 35%, transparent);
+  }
+}
+@keyframes num-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+@keyframes swap {
+  from {
+    opacity: 0.3;
+  }
+}
+
+.promises {
+  --step: 120ms;
+}
+.steps {
+  --step: 110ms;
+}
+/* manifest.json: c k s k s s, so the k and s spans count 0 to 4. */
+.manifest code span:nth-of-type(3) {
+  --n: 1;
+}
+.manifest code span:nth-of-type(4) {
+  --n: 2;
+}
+.manifest code span:nth-of-type(5) {
+  --n: 3;
+}
+.manifest code span:nth-of-type(6) {
+  --n: 4;
+}
+
+/* Install: a rail beside the step numbers fills as the list scrolls in. */
+.steps {
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  bottom: 22px;
+  left: 44px;
+  width: 2px;
+  border-radius: var(--cr-radius-full);
+  background: color-mix(in srgb, var(--cr-manila) 70%, transparent);
+  transform-origin: 50% 0;
+}
+.steps li::before {
+  transform-origin: 0.3em 50%;
+}
+@supports (animation-timeline: view()) {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    .steps {
+      view-timeline: --steps block;
+    }
+    html.motion .steps::before {
+      animation: draw-y linear both;
+      animation-timeline: --steps;
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
+@supports not (animation-timeline: view()) {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    html.motion .steps.is-in::before {
+      animation: draw-y 1200ms var(--cr-ease-ink) backwards;
+    }
+  }
+}
+
+/* Lightbox: fades and zooms up; moving between pictures cross-fades. */
+@media (prefers-reduced-motion: no-preference) {
+  html.anim .lightbox,
+  html.anim .lightbox::backdrop {
+    opacity: 0;
+    transition:
+      opacity var(--cr-duration-base) var(--cr-ease-exit),
+      transform var(--cr-duration-base) var(--cr-ease-exit),
+      overlay var(--cr-duration-base) allow-discrete,
+      display var(--cr-duration-base) allow-discrete;
+  }
+  html.anim .lightbox {
+    transform: scale(0.96);
+  }
+  html.anim .lightbox[open],
+  html.anim .lightbox[open]::backdrop {
+    opacity: 1;
+    transform: none;
+    transition-duration: var(--cr-duration-slow);
+    transition-timing-function: var(--cr-ease-ink);
+  }
+  @starting-style {
+    html.anim .lightbox[open],
+    html.anim .lightbox[open]::backdrop {
+      opacity: 0;
+    }
+    html.anim .lightbox[open] {
+      transform: scale(0.96);
+    }
+  }
+  html.anim .lightbox-shot.swap {
+    animation: swap 200ms var(--cr-ease-standard);
   }
 }
 
@@ -435,6 +555,26 @@ html.vt-ink::view-transition-new(root) {
   }
   html.motion .seg.is-in .meter i {
     animation: draw-x 640ms var(--cr-ease-ink) 600ms backwards;
+  }
+  /* Safety: the promises arrive in turn and their icons draw. */
+  html.motion .promises li svg path {
+    stroke-dasharray: 1;
+  }
+  html.motion .promises.is-in li svg path {
+    animation: draw var(--lp-beat-l) var(--cr-ease-ink) backwards;
+    animation-delay: calc(var(--n, 0) * var(--step, 120ms) + 120ms);
+  }
+  /* "Only what it needs": a highlighter passes over each key and host. */
+  html.motion .manifest.is-in :is(.k, .s) {
+    animation: hl 700ms var(--cr-ease-standard) backwards;
+    animation-delay: calc(200ms + var(--n, 0) * 160ms);
+  }
+  html.motion .steps:not(.is-in) li::before {
+    opacity: 0;
+  }
+  html.motion .steps.is-in li::before {
+    animation: num-pop var(--lp-beat) var(--cr-ease-spring) backwards;
+    animation-delay: calc(var(--n, 0) * var(--step, 110ms));
   }
   html.motion .credits-grid .family.is-in img {
     transform-origin: 50% 100%;

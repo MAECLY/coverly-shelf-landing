@@ -50,6 +50,11 @@
     var at = 0, opener = null;
     function show(i) {
       at = (i + thumbs.length) % thumbs.length;
+      if (dialog.open) { /* replay the cross-fade (motion.css) */
+        shot.classList.remove("swap");
+        void shot.offsetWidth;
+        shot.classList.add("swap");
+      }
       var t = thumbs[at];
       var light = document.documentElement.getAttribute("data-theme") === "light";
       shot.src = (light && t.getAttribute("data-full-light")) || t.getAttribute("data-full");
