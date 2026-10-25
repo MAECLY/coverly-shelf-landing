@@ -30,13 +30,15 @@ export function screenshot(html, out, width, height, { transparent = false } = {
   try {
     const page = join(dir, 'page.html');
     writeFileSync(page, html);
-    // Headless Chrome reserves no chrome, but asks for a little extra height
-    // on some builds; the page itself is clipped to width x height.
     execFileSync(findChrome(), [
       '--headless=new',
       '--disable-gpu',
       '--hide-scrollbars',
       '--force-device-scale-factor=1',
+      '--force-color-profile=srgb',
+      '--no-first-run',
+      '--no-default-browser-check',
+      '--virtual-time-budget=3000',
       `--user-data-dir=${join(dir, 'profile')}`,
       ...(transparent ? ['--default-background-color=00000000'] : []),
       `--window-size=${width},${height}`,
