@@ -1,7 +1,7 @@
 /* The two interactive bits of the page, both optional (the page reads the
    same without them):
    1. A CSS box turns when dragged, or with the arrow keys once focused
-      (only when the page has one in the hero).
+      (the hero's box, or the one in "what it adds").
    2. The screenshot thumbnails open a lightbox that works like the extension's:
       Left/Right to move, Escape to close. */
 (function () {
@@ -76,7 +76,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    var box = document.querySelector(".hero .box");
+    var box = document.querySelector(".hero .box, .pic-box .box");
     if (box) turnable(box);
     var dialog = document.querySelector(".lightbox");
     var thumbs = Array.prototype.slice.call(document.querySelectorAll(".strip [data-full]"));

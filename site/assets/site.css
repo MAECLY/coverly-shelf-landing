@@ -631,7 +631,6 @@ html:not(.js) .mode {
   --h: 116px;
   --d: 18px;
   --ry: 32deg;
-  cursor: default;
 }
 .pic-box .cover-title {
   font-size: 15px;

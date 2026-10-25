@@ -43,6 +43,9 @@ html .no-anim *::after {
 .pic-gallery {
   --step: 90ms;
 }
+.duo {
+  --step: 140ms;
+}
 
 @keyframes rise {
   from {
@@ -108,6 +111,106 @@ html .no-anim *::after {
   from {
     clip-path: inset(0 100% 0 0 round 4px);
   }
+}
+
+@keyframes cover-seat {
+  from {
+    opacity: 0;
+    transform: translateZ(calc(var(--d) / 2)) translate3d(0, -22px, 40px) rotateX(10deg);
+  }
+}
+@keyframes box-turn {
+  from {
+    transform: rotateX(var(--rx)) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(var(--rx)) rotateY(var(--ry));
+  }
+}
+/* The focus ring walks the three screens (two presses of the right arrow)
+   and fades on Escape. */
+@keyframes ring-walk {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  8%,
+  30% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  42%,
+  64% {
+    transform: translateX(calc(100% + 8px));
+  }
+  76%,
+  88% {
+    opacity: 1;
+    transform: translateX(calc(200% + 16px));
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(calc(200% + 16px));
+  }
+}
+@keyframes key-hit {
+  50% {
+    background-color: color-mix(in srgb, var(--cr-manila) 55%, var(--cr-surface-raised));
+    border-color: var(--cr-manila);
+    transform: translateY(1px);
+  }
+}
+@keyframes wipe-l {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+}
+@keyframes mini-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) rotate(-6deg);
+  }
+}
+@keyframes zoom-in {
+  from {
+    transform: scale(0.94);
+    clip-path: inset(6% 6% round 12px);
+  }
+}
+@keyframes ink-spread {
+  from {
+    clip-path: circle(0 at var(--ink-x, 50%) var(--ink-y, 0));
+  }
+  to {
+    clip-path: circle(150vmax at var(--ink-x, 50%) var(--ink-y, 0));
+  }
+}
+
+/* The gallery's focus ring: one screen wide, hidden at rest. */
+.pic-gallery::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 14px;
+  z-index: 1;
+  width: calc((100% - 16px) / 3);
+  aspect-ratio: 5 / 3;
+  border-radius: var(--cr-radius-sm);
+  box-shadow: inset 0 0 0 3px var(--cr-manila);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Colour mode: the new one spreads from the control that picked it. */
+html.vt-ink::view-transition-old(root),
+html.vt-ink::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+html.vt-ink::view-transition-old(root) {
+  animation: none;
+}
+html.vt-ink::view-transition-new(root) {
+  animation: ink-spread 480ms var(--cr-ease-ink) both;
 }
 
 /* Reading progress: a manila bar under the top bar, scrubbed by the scroll.
@@ -202,6 +305,44 @@ html .no-anim *::after {
   }
   html.motion :is(.feature, .shot-card, .lists-grid .stage).is-in :is(.shot, .pic)::after {
     animation: draw-x var(--cr-duration-slower) var(--cr-ease-enter) 200ms backwards;
+  }
+  /* Feature scenes, once each block is half in. The cover seats onto its
+     box, then the box turns to its resting angle (no forwards fill: the
+     base transform, and a drag, take over). */
+  html.motion .feature.is-in .pic-box .face.front {
+    animation: cover-seat var(--lp-beat-l) var(--cr-ease-ink) 120ms backwards;
+  }
+  html.motion .feature.is-in .pic-box .box {
+    animation: box-turn 640ms var(--lp-ease-swing) 600ms backwards;
+  }
+  html.motion .feature.is-in .pic-gallery .screen {
+    animation: lift-in 360ms var(--cr-ease-ink) backwards;
+    animation-delay: calc(var(--n, 0) * var(--step, 90ms));
+  }
+  html.motion .feature.is-in .pic-gallery::before {
+    animation: ring-walk 1800ms var(--cr-ease-ink) 500ms backwards;
+  }
+  html.motion .feature.is-in .keys kbd:nth-child(2) {
+    animation:
+      key-hit 220ms var(--cr-ease-standard) 1040ms,
+      key-hit 220ms var(--cr-ease-standard) 1650ms;
+  }
+  html.motion .feature.is-in .keys kbd:nth-child(3) {
+    animation: key-hit 220ms var(--cr-ease-standard) 2080ms;
+  }
+  html.motion .feature.is-in .pic-modes .dark {
+    animation: wipe-l var(--lp-beat-l) var(--cr-ease-ink) 150ms backwards;
+  }
+  html.motion .feature.is-in .pic-modes .mini {
+    animation: mini-drop var(--cr-duration-slower) var(--lp-ease-swing) 300ms backwards;
+  }
+  html.motion .feature.is-in .pic-modes .dark .mini {
+    animation-delay: 640ms;
+  }
+  /* Two captures zoom open, the second a beat after the first. */
+  html.motion .duo .shot-card.is-in img {
+    animation: zoom-in var(--lp-beat-l) var(--cr-ease-ink) backwards;
+    animation-delay: calc(var(--n, 0) * 140ms);
   }
   html.motion .credits-grid .family.is-in img {
     transform-origin: 50% 100%;
